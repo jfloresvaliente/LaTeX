@@ -14,44 +14,34 @@
 
 \begin{document}
 
-
-
-
 \frontmatter
-
 \input{titlepage}
+\tableofcontents
+\listoffigures
+\listoftables
 %\input{copyright}
 %\input{acknowledgements}
+\input{prologue}
 %\input{abstract}
-\tableofcontents
 
 \mainmatter
-
-% !TEX encoding = UTF-8 Unicode
-
-%\input{brev_intro}
+\linenumbers
 \input{Cap1}
+\input{Cap2}
+\input{Cap3}
+\input{Cap4}
+\input{Cap5}
+\nolinenumbers
 
 
-
-
-% add more chapters as needed
 %\appendix
-%\renewcommand{\chaptermark}[1]{\markboth{\small Appendix \thechapter. #1}{}}
+%\input{appendix}
 
-%\chapter{Title of the first appendix} \label{app:freq}
-
-% add more appendices as needed
-%\backmatter
-%\bibliographystyle{model5-names} % or another bib style
-
-%\title{A bibLaTeX example}
-%\addbibresource{Biblio.bib} %Imports bibliography file
-
+\backmatter
 %\nocite{*}
 
-\bibliographystyle{authordate1}
-%\bibliographystyle{authordate3}
+\bibliographystyle{bst/authordate1}
+%\bibliographystyle{bst/authordate3}
 \bibliography{ThesisBib}
 
 \end{document}

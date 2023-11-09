@@ -1,4 +1,4 @@
-% packages and settings for SU thesis
+% Paquetes y configuraciones para Sorbone Universite
 
 % Define the margin dimensions based on paper format
 \newcommand{\setmargins}{
@@ -10,7 +10,6 @@
 	\usepackage[margin=25mm]{geometry}
 	\fi
 }
-
 \setmargins
 
 \usepackage[british]{babel}
@@ -18,11 +17,14 @@
 \usepackage{subcaption}
 \usepackage[utf8]{inputenc}
 
-\renewcommand{\baselinestretch}{1.06} % stretch distance between baselines
+% distancia entre lineas
+\renewcommand{\baselinestretch}{1.06}
+
 \frenchspacing
 
 \newcommand{\University}{Sorbonne Universit\'e, Paris-France}
 \newcommand{\Thesisdesc}{Dissertation for the degree of PhD}
+
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancypagestyle{plain}{% first page of chapter
@@ -30,7 +32,8 @@
 	\renewcommand{\headrulewidth}{0pt} % comment to keep rule
 	\fancyfoot{} % comment to put page number at bottom
 }
-\setlength{\headheight}{15pt}
+% Configurar el ancho del "header" de cada pagina
+\setlength{\headheight}{41pt}
 \renewcommand{\chaptermark}[1]{\markboth{\small #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\small \thesection\ #1}{}} 
 \renewcommand{\headrulewidth}{0.6pt}
@@ -44,21 +47,12 @@
 \usepackage{natbib}
 \usepackage{enumitem} 
 
-\usepackage{lipsum}
-\usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=black]{hyperref}
+% Para cambiar el color de las referencias cruzadas y citas bibliograficas
+\usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{cleveref} % este paquete debe cargarse despues de "hyperref"
 
-\usepackage{cleveref}
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=blue,      
-    urlcolor=blue,
-%    pdftitle={Overleaf Example},
-%    pdfpagemode=FullScreen,
-    }
-
-\usepackage[figurename=Fig.]{caption} % Cambiar el titulo de figuras Fig. en lugar de Figure
+% Cambiar el titulo en la figuras Fig. en lugar de Figure
+\usepackage[figurename=Fig.]{caption}
 
 \Crefname{figure}{Figure}{Figures}
 \Crefname{equation}{Equation}{Equations}
@@ -67,9 +61,21 @@
 \crefname{equation}{Eq.}{Eqs.}
 \crefname{table}{Table}{Tables}
 
-\graphicspath{{figures/}} % this is where the pictures are
+% directorio donde se ubican las figuras
+\graphicspath{{figures/}} 
 
-\setcounter{tocdepth}{3} % para los niveles de lista de contenidos
 \usepackage[font={small,it}]{caption}
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
+
+% para generar ambientes verticales y voltear una figura o tabla
+\usepackage{lscape}
+
+% enumerar lineas de texto
+\usepackage{lineno}
+
+% establecer los niveles en la lista de contenidos
+\setcounter{tocdepth}{2}
+
+% controlar las dimensiones de celdas en tablas
+\usepackage{array}
