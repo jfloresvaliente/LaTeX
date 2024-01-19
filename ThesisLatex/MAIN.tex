@@ -15,9 +15,9 @@
 \begin{document}
 
 \frontmatter
-\input{titlepage}
+%\input{titlepage}
 \tableofcontents
-\listoffigures
+%\listoffigures
 \listoftables
 %\input{copyright}
 %\input{acknowledgements}
@@ -28,20 +28,20 @@
 \linenumbers
 \input{Cap1}
 \input{Cap2}
-\input{Cap3}
-\input{Cap4}
-\input{Cap5}
+%\input{Cap3}
+%\input{Cap4}
+%\input{Cap5}
 \nolinenumbers
 
-
-%\appendix
-%\input{appendix}
-
 \backmatter
-%\nocite{*}
 
+% Imprimir Bibliografia
+\renewcommand\bibname{References} % Cambiar titulo a la bibliografia
 \bibliographystyle{bst/authordate1}
 %\bibliographystyle{bst/authordate3}
-\bibliography{ThesisBib}
+\bibliography{bib/ThesisBib}
+
+% Imprimir Glosario
+\printnoidxglossary
 
 \end{document}

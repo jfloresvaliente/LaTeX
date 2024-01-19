@@ -2,7 +2,7 @@
 
 \section{Introduction}\label{Chap2Intro}
 
-Interest in the early life stages of marine organisms has increased \citep{Stra1993,Haven1995,Levi2006,GawaMoni2007,CoweSpon2009} in particular for understanding larval transport and dispersal patterns \citep{Youn1995,GreeMayp2015,Leis2021} due to their key role in the ecology of marine organisms \citep{MoseSmit1993} and potential usefulness in decision making for the management of marine protected areas (MPA) \citep{DaloBogd2015}. Many marine species have pelagic early life stages in their life cycle \citep{Haven1995}. This phase of locomotion is essentially driven by ocean currents and species-specific vertical behaviours \citep{Levi1990,CowePari2006,DaloBogd2015}.\\
+Interest in the early life stages of marine organisms has increased \citep{Stra1993,Haven1995,Levi2006,GawaMoni2007,CoweSpon2009} in particular for understanding larval transport and dispersal patterns \citep{Youn1995,GreeMayp2015,Leis2021} due to their key role in the ecology of marine organisms \citep{MoseSmit1993} and potential usefulness in decision making for the management of \acrfull{mpa} \citep{DaloBogd2015}. Many marine species have pelagic early life stages in their life cycle \citep{Haven1995}. This phase of locomotion is essentially driven by ocean currents and species-specific vertical behaviours \citep{Levi1990,CowePari2006,DaloBogd2015}.\\
 
 In the case of sessile organisms, such as scallops and corals, concepts such as larval transport, larval dispersal and population connectivity have been formally defined \citep{PineHare2007}. Hence, \textbf{larval transport} is the horizontal translocation of a larva between points $X_{1}Y_{1}$, and $X_{2}Y_{2}$, where $X$ and $Y$ are the horizontal axes, perpendicular and parallel to the coastline respectively (to simplify, this definition ignores the vertical axis $Z$). On the other hand, \textbf{larval dispersal} refers to the spread of larvae from a spawning source to a settlement site (a geographic point from which the adult will have limited or no mobility). We note that larval transport is a component of larval dispersal (Fig. \ref{Chap2LarvalTransport}). Finally, \textbf{population connectivity} is the exchange of individuals among geographically separated subpopulations. We note that larval dispersal is a component of population connectivity, and therefore larval transport too. In the case of pelagic or demersal organisms such as fish, these general concepts also apply but the movement of adults is also an important component of population connectivity.\\
 
@@ -19,7 +19,7 @@ During larval transport, organisms are dragged by currents and depend on environ
 
 \section{Methods}\label{Chap2Meth}
 
-An individual-based model (IBM) simulates populations and communities by following individuals and their properties \citep{DeanGrim2014}. As a base, this IBM, that we will use from here on, is a lagrangian tool called \href{https://ichthyop.org/}{Ichthyop} – Lagrangian tool for simulating ichthyoplankton dynamics, version 3.2 \citep{LettVerl2008}. In general, a protocol designed for this type of IBM approach will be followed \citep{GrimBerg2006,GrimBerg2010}. In the following chapters, the complexity of the model will be increased by adding specific modules for new processes.\\
+An \acrfull{ibm} simulates populations and communities by following individuals and their properties \citep{DeanGrim2014}. As a base, this \acrshort{ibm}, that we will use from here on, is a lagrangian tool called \href{https://ichthyop.org/}{Ichthyop} – Lagrangian tool for simulating ichthyoplankton dynamics, version 3.2 \citep{LettVerl2008}. In general, a protocol designed for this type of \acrshort{ibm} approach will be followed \citep{GrimBerg2006,GrimBerg2010}. In the following chapters, the complexity of the model will be increased by adding specific modules for new processes.\\
 
 \subsection{Purpose}\label{Chap2MethPurp}
 
@@ -27,14 +27,14 @@ To evaluate the impact of spatial resolution, bathymetry and coastline behaviour
 
 \subsection{Entities and state variables}\label{Chap2MethEnti}
 
-The model included two types of entities: the environment and the individuals (virtual particles). The environment was represented by stored hydrodynamic simulations from the Coastal and Regional Ocean COmmunity model (\href{https://www.croco-ocean.org/}{CROCO}, \cite{HiltAucl2020,ShchMcwi2005}) providing the forcing state variables: ocean current velocities ($ms^{-1}$), over the NHCS. Individuals were characterized by the following state variables: age ($d$), location in 3D (longitude, latitude and depth).\\
+The model included two types of entities: the environment and the individuals (virtual particles). The environment was represented by stored hydrodynamic simulations from the \acrlong{croco} (\href{https://www.croco-ocean.org/}{CROCO}, \cite{HiltAucl2020,ShchMcwi2005}) providing the forcing state variables: ocean current velocities ($ms^{-1}$), over the \acrshort{nhcs}. Individuals were characterized by the following state variables: age ($d$), location in 3D (longitude, latitude and depth).\\
 
-Fig. \ref{Chap2SpawningZone} xshows the three different CROCO configurations with contrasted grid size and bathymetry were used, in order to evaluate the model sensitivity to hydrodynamic resolution (Table \ref{TabSimus}). The first configuration (D01) extends from 22 °S to 5 °N in latitude and from 96 °W to 70 °W in longitude, with a horizontal resolution of $\sim$10 km and 32 vertical levels. The bathymetry comes from the STRM30 dataset \citep{BeckSand2009}. It was interpolated on the model grid and smoothed in order to reduce errors in the horizontal pressure gradient. The second configuration (D02) extends from 20 ºS to 5 ºS with a horizontal resolution of $\sim$2 km and 42 vertical levels. The D02 domain is embedded in the D01 domain, through an offline nesting procedure (``roms2roms''; \cite{MasoMole2010}). We used two different bathymetries for the D02 domain: one interpolated from the D01 bathymetry (i.e., similar to the D01 bathymetry) and one interpolated directly from the STRM30 dataset. Note that consequently the former is smoother than the latter, so in the following we call them D02s and D02r, respectively.\\
+Fig. \ref{Chap2SpawningZone} xshows the three different \acrshort{croco} configurations with contrasted grid size and bathymetry were used, in order to evaluate the model sensitivity to hydrodynamic resolution (Table \ref{TabSimus}). The first configuration (D01) extends from 22 °S to 5 °N in latitude and from 96 °W to 70 °W in longitude, with a horizontal resolution of $\sim$10 km and 32 vertical levels. The bathymetry comes from the STRM30 dataset \citep{BeckSand2009}. It was interpolated on the model grid and smoothed in order to reduce errors in the horizontal pressure gradient. The second configuration (D02) extends from 20 ºS to 5 ºS with a horizontal resolution of $\sim$2 km and 42 vertical levels. The D02 domain is embedded in the D01 domain, through an offline nesting procedure (``roms2roms''; \cite{MasoMole2010}). We used two different bathymetries for the D02 domain: one interpolated from the D01 bathymetry (i.e., similar to the D01 bathymetry) and one interpolated directly from the STRM30 dataset. Note that consequently the former is smoother than the latter, so in the following we call them D02s and D02r, respectively.\\
 
 \begin{figure}[ht]
 	\includegraphics[width=1.0\textwidth]{figures/Chap2SpawningZone.png}
 	\centering
-	\caption{Domain of IBM model study area at 10 km of spatial resolution (D01). Dotted rectangle represents the nested model domains (D02s, D02s) at 2 km resolution used for spatial resolution test. Spawning areas (1 to 4) are every 2 degrees of latitude between 6º – 14º S. Three isobaths (100 m, 500 m and 2000 m) are shown.}
+	\caption{Domain of \acrshort{ibm} model study area at 10 km of spatial resolution (D01). Dotted rectangle represents the nested model domains (D02s, D02s) at 2 km resolution used for spatial resolution test. Spawning areas (1 to 4) are every 2 degrees of latitude between 6º – 14º S. Three isobaths (100 m, 500 m and 2000 m) are shown.}
 	\label{Chap2SpawningZone}
 \end{figure}
 
@@ -61,11 +61,11 @@ Coastline behavior &
 \end{table}
 %\end{landscape}
 
-The three configurations were used to obtain quasi-equilibrium solutions, forced by monthly climatologies (over the period 2008-2015) at their surface and lateral boundaries. They all used the same atmospheric forcing fields. The wind stress was computed from a monthly climatology of the Advanced Scatterometer (\href{https://www.ospo.noaa.gov/Products/atmosphere/ascat/}{ASCAT}, 1/4° gridded product). Other atmospheric fluxes (shortwave heat fluxes and freshwater fluxes) come from the \href{https://repository.library.noaa.gov/view/noaa/49337}{COADS} monthly climatology \citep{DasiYoun1994}. Model sea surface temperature (SST) was restored to observed climatological monthly SST derived from the merged multi-sensor OSTIA product \citep{DonlMart2012} following the methodology of \citep{BarnSief1995}. Open boundary conditions for the D01 domain were derived from a monthly climatology of the \href{https://www.mercator-ocean.eu/en/ocean-science/glorys/}{GLORYS2V4} reanalysis (1/4° horizontal resolution; \citep{FerrPare2012}) for temperature, salinity, zonal and meridional current velocity components and sea-level height. Climatological simulations were run for 10 years, the first 4 years being considered as a spin-up. In the present study, the last three years were used to force Ichthyop.\\
+The three configurations were used to obtain quasi-equilibrium solutions, forced by monthly climatologies (over the period 2008-2015) at their surface and lateral boundaries. They all used the same atmospheric forcing fields. The wind stress was computed from a monthly climatology of the \acrlong{ascat} (\href{https://www.ospo.noaa.gov/Products/atmosphere/ascat/}{ASCAT}, 1/4° gridded product). Other atmospheric fluxes (shortwave heat fluxes and freshwater fluxes) come from the \acrlong{coads} \href{https://repository.library.noaa.gov/view/noaa/49337}{COADS} monthly climatology \citep{DasiYoun1994}. Model \acrfull{sst} was restored to observed climatological monthly \acrshort{sst} derived from the merged multi-sensor OSTIA product \citep{DonlMart2012} following the methodology of \citep{BarnSief1995}. Open boundary conditions for the D01 domain were derived from a monthly climatology of the \href{https://www.mercator-ocean.eu/en/ocean-science/glorys/}{GLORYS2V4} reanalysis [1/4° horizontal resolution; \citep{FerrPare2012}] for temperature, salinity, zonal and meridional current velocity components and sea-level height. Climatological simulations were run for 10 years, the first 4 years being considered as a spin-up. In the present study, the last three years were used to force \gls{ich}.\\
 
 \subsection{Process overview and scheduling}\label{Chap2MethProc}
 
-Virtual individuals were released in the physical environment according to a determined spatial (area, depth and bathymetry) and temporal (month and frequency) releasing strategy that constituted the initial conditions (section 2.2.5). For each time step (2 hours) each egg or larva was passively transported by the 3D current fields and was then tested for recruitment.\\
+Virtual individuals were released in the physical environment according to a determined spatial (area, depth and bathymetry) and temporal (month and frequency) releasing strategy that constituted the initial conditions (section \ref{Chap2MethInit}). For each time step (2 hours) each egg or larva was passively transported by the 3D current fields and was then tested for recruitment.\\
 
 \subsection{Design concepts}\label{Chap2MethDesi}
 
@@ -73,9 +73,9 @@ Virtual individuals were released in the physical environment according to a det
 
 \item Stochasticity: Individuals were initially randomly distributed over the Peruvian continental shelf. We chose the number of individuals released (5 000) such that the variability of simulated recruitment between three replicates of the same simulation was negligible.\\
 
-\item Coastline behavior: One of the utilities of Ichthyop is the option to use different response configurations of a particle when faced with the decision of what to do when it touches the land boundary (coastline). We tested three types of coastline behaviors: 1) \textbf{BEACHING}: Ichthyop does move the particle inland but ``kill'' it. From now onward the particle is out of the simulation. 2) \textbf{BOUNCING}: the coastline acts as a billard edge and the particle will bounce as a billard ball in the events that the move would take it beyond the coastline. The particle bounces back as much as it would penetrate inland and 3) \textbf{STANDSTILL}: the particle gives up on the move that would take it inland and just wait until next time step for trying another move.\\
+\item Coastline behavior: One of the utilities of \gls{ich} is the option to use different response configurations of a particle when faced with the decision of what to do when it touches the land boundary (coastline). We tested three types of coastline behaviors: 1) \textbf{BEACHING}: \gls{ich} does move the particle inland but ``kill'' it. From now onward the particle is out of the simulation. 2) \textbf{BOUNCING}: the coastline acts as a billard edge and the particle will bounce as a billard ball in the events that the move would take it beyond the coastline. The particle bounces back as much as it would penetrate inland and 3) \textbf{STANDSTILL}: the particle gives up on the move that would take it inland and just wait until next time step for trying another move.\\
 
-\item Observation: After 30 days of drift, each particle was tested to see if it was within the continental shelf and was considered ``retained'' or ``non-retained''.\\
+\item Observation: After 30 days of drift, each particle was tested to see if it was within the continental shelf and was considered ``retained'' or ``non-retained''. From now on, we will call \gls{cri1}, referring ``retention'' as a criterion for larval recruitment.\\
 
 \end{itemize}
 
@@ -89,23 +89,23 @@ Release area (Fig. \ref{Chap2SpawningZone}) was defined between latitudes 6°S a
 
 \begin{itemize}
 
-\item Transport: To simulate particle transport, virtual individuals were advected using a trilinear interpolation scheme of the velocity fields derived from CROCO, in time and space, and using a forward Euler numerical scheme with horizontal diffusion following \cite{PeliMarc2007}.\\
+\item Transport: To simulate particle transport, virtual individuals were advected using a trilinear interpolation scheme of the velocity fields derived from \acrshort{croco}, in time and space, and using a forward Euler numerical scheme with horizontal diffusion following \cite{PeliMarc2007}.\\
 
-\item Retention: We considered one criterion for retention, hereafter referred to as the age-criterion. An individual was considered as retained if it was within the coastal zone (offshore limit: the 2000 m isobath) at age 30 days.\\
+\item Retention: We considered one age-criterion for recruitment, hereafter referred to as \gls{cri1}. An individual was considered as ``recruited'' if it was within the coastal zone (offshore limit: the 2000 m isobath) at age 30 days.\\
 
 \end{itemize}
 
 \subsection{Simulations and sensitivity analysis}\label{Chap2MethSimSens}
 
-From this chapter onwards, each drift simulation will be listed under the name ``\textbf{sim}'', for example, in the text, saying ``sim 1'', will be equivalent to saying ``simulation 1''. Details of each simulation will be detailed in a table in its corresponding chapter.\\
+From this chapter onwards, each drift simulation will be listed under the name ``\textbf{sim \#}'', for example, in the text, saying ``sim 1'', will be equivalent to saying ``simulation 1''. Details of each simulation will be detailed in a table in its corresponding chapter.\\
 
-Three simulations were performed in order to explore the model sensitivity to different environmental forcing fields (Table \ref{TabSimus}). In order to fit the spatial extent of the 2 km grid, individuals release was constrained in the coastal area between 6 ºS and 14 ºS (Fig. \ref{Chap2SpawningZone}, dotted box) for all three simulations. Larval retention was calculated at 30 days.\\
+Three simulations were performed in order to explore the model sensitivity to different environmental forcing fields (Table \ref{TabSimus}). In order to fit the spatial extent of the 2 km grid, individuals release was constrained in the coastal area between 6 ºS and 14 ºS (Fig. \ref{Chap2SpawningZone}, dotted box) for all three simulations. Larval recruitment was calculated at 30 days.\\
 
 \clearpage
 
 \section{Results}\label{Chap2Resu}
 
-Globally, simulation 1 (D01), simulation 2 (D02s) and simulation 3 (D02r) showed no significant differences (Fig. \ref{Chap2Recruitment3bars}). As all simulations were run with interannual forcing, no differences in retention rates were observed in the 3 years of simulation and were also not impacted by the frequency of release (not shown).\\
+Globally, simulation 1 (D01), simulation 2 (D02s) and simulation 3 (D02r) showed no significant differences (Fig. \ref{Chap2Recruitment3bars}). As all simulations were run with interannual forcing, no differences in recruitment rates were observed in the 3 years of simulation and were also not impacted by the frequency of release (not shown).\\
 
 \begin{figure}[ht]
 	\includegraphics[width=1.0\textwidth]{figures/Chap2Recruitment3bars.png}
@@ -161,12 +161,14 @@ Release depth had the highest and most significant effect on all 3 simulations a
 
 Fig. \ref{Chap2SpatialVariation} showed that retention rates between 10\textdegree S - 12\textdegree S remained constant throughout the year in the 3 simulations. The northern zone between 6\textdegree S - 10\textdegree S showed seasonal variability with higher retention values in summer and accented values in January and February in simulation 2 (D02s).\\
 
+\begin{center}
 \begin{figure}[ht]
 	\includegraphics[width=1.0\textwidth]{figures/Chap2SpatialVariation.png}
 	\centering
 	\caption{Spatial variation of retention rates for simulation 1 (D01), simulation 2 (D02s) and simulation 3 (D02r).}
 	\label{Chap2SpatialVariation}
 \end{figure}
+\end{center}
 
 Fig. \ref{Chap2CoastlineBehavior} describes the interaction between release bathymetry and coastline behavior. Only in the area closest to the coast (0 - 100 m of bathymetry) the beaching coastline behavior had a significant effect in simulation 1 (D01), simulation 2 (D02s) and simulation 3 (D02r). The other 2 coastlines behaviours had not an important effect.\\
 
@@ -181,7 +183,7 @@ Fig. \ref{Chap2CoastlineBehavior} describes the interaction between release bath
 
 \section{Discussion}\label{Chap2Disc}
 
-A sensitivity analysis to spatial resolution, bathymetry and coastline behavior was applied to the retention rates off Peru using Ichthyop model, a powerfull Lagrangian tool \citep{LettVerl2008}. This tool allowed us to track virtual particles in a 3D environment and to know the location of each particle at each time step.\\
+A sensitivity analysis to spatial resolution, bathymetry and coastline behavior was applied to the retention rates off Peru using \gls{ich} model, a powerfull Lagrangian tool \citep{LettVerl2008}. This tool allowed us to track virtual particles in a 3D environment and to know the location of each particle at each time step.\\
 
 The fact that there was no significant difference between simulation 1 (D01), simulation 2 (D02s) and simulation 3 (D02r) strengthen the conclusions found by \citep{BrocLett2008} who used a spatial resolution forcing only slightly greater than 10 km, despite their study had a wider latitudinal range (2º - 20º S) than the one used in this chapter (6º - 14º S). \cite{BrocLett2008} also found that release depth is the most important factor (22.7 \% of explained variance) although in a smaller proportion than in the present chapter (30.11 \%). However, \cite{BrocLett2008} found that the next most important factors were release latitude (7.2 \%) and then release bathymetry (3.9 \%), in contrast to the present chapter in which release latitude (4.58 \%) was less important than release bathymetry (12.95 \%). Concerning the release bathymetry, finding a higher value of percentage of variance explanation in this chapter compared to \cite{BrocLett2008}, could be due to the topographic sources \citep{SmitSand1997} used by them and the one used in the present chapter \citep{BeckSand2009} to represent the bathymetry, which could provide a better description of the seafloor and affect circulation and retention structures also affecting retention rates as \cite{RojaLand2014} reported.\\
 
@@ -193,6 +195,6 @@ Something that was not evaluated in this work was the effect of wind forcing fre
 
 This could have implications when we use different coastline behaviors, as demonstrated in this chapter, in which only beaching behavior in areas very close to the coast (0 - 100 m) had significant impacts on retention rates, although did not have a major impact at level of the continental shelf off Peru, could have a significant effect if we study problems such as oil spills or accumulation of microplastics on the coast \citep{AtwoFalc2019,LopeNajj2021}.\\
 
-Finally, we can conclude that to work on \textit{E. ringens} recruitment simulations, in order to save computational time and energy, we can continue with a spatial resolution of 10 km. In addition, it is recommended to use the coastal behaviour called standstill, since for the purposes of our research it will not significantly affect near-shore particle transport.\\
+Finally, we can conclude that to work on \textit{\gls{ringens}} recruitment simulations, in order to save computational time and energy, we can continue with a spatial resolution of 10 km. In addition, it is recommended to use the coastal behaviour called standstill, since for the purposes of our research it will not significantly affect near-shore particle transport.\\
 
 \clearpage

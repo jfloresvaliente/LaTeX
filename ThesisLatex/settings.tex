@@ -48,7 +48,7 @@
 \usepackage{enumitem} 
 
 % Para cambiar el color de las referencias cruzadas y citas bibliograficas
-\usepackage[colorlinks,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage[colorlinks,urlcolor=green,citecolor=red,linkcolor=blue]{hyperref}
 \usepackage{cleveref} % este paquete debe cargarse despues de "hyperref"
 
 % Cambiar el titulo en la figuras Fig. en lugar de Figure
@@ -68,14 +68,22 @@
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
 
-% para generar ambientes verticales y voltear una figura o tabla
+% Generar ambientes verticales y voltear una figura o tabla
 \usepackage{lscape}
 
-% enumerar lineas de texto
+% Enumerar lineas de texto
 \usepackage{lineno}
 
-% establecer los niveles en la lista de contenidos
+% Establecer los niveles en la lista de contenidos
 \setcounter{tocdepth}{2}
 
-% controlar las dimensiones de celdas en tablas
+% Controlar las dimensiones de celdas en tablas
 \usepackage{array}
+
+% Agregar glosario
+\usepackage[style=indexgroup, toc,section=chapter]{glossaries}
+\makenoidxglossaries % use TeX to sort
+\loadglsentries{glossaries}
+
+% Incluir la bibliografia en la tabla de contenidos
+\usepackage[nottoc]{tocbibind}
