@@ -6,7 +6,7 @@
 \author{Jorge Arturo FLORES VALIENTE}
 \title{Influence of combined temperature and food availability on Peruvian anchovy (\textit{Engraulis ringens}) early life stages in the northern Humboldt Current system:\\A modelling approach}
 %\newcommand{\Thesisplaintitle}{Title of the thesis less than 100 characters} 
-\date{October, 2023}
+\date{April, 2024}
 \newcommand{\Thesisfulldate}{\today}
 
 \usepackage[english]{babelbib}
@@ -17,29 +17,34 @@
 \frontmatter
 %\input{titlepage}
 \tableofcontents
-%\listoffigures
+\listoffigures
 \listoftables
-%\input{copyright}
-%\input{acknowledgements}
 \input{prologue}
 %\input{abstract}
+%\input{copyright}
+%\input{acknowledgements}
 
 \mainmatter
 \linenumbers
+
 \input{Cap1}
 \input{Cap2}
-%\input{Cap3}
-%\input{Cap4}
+\input{Cap3}
+\input{Cap4}
 %\input{Cap5}
-\nolinenumbers
+\input{Appendix1}
 
+\nolinenumbers
 \backmatter
 
 % Imprimir Bibliografia
 \renewcommand\bibname{References} % Cambiar titulo a la bibliografia
 \bibliographystyle{bst/authordate1}
 %\bibliographystyle{bst/authordate3}
-\bibliography{bib/ThesisBib}
+%\bibliography{bib/ThesisBib}
+
+{\footnotesize
+\bibliography{bib/ThesisBib}}
 
 % Imprimir Glosario
 \printnoidxglossary

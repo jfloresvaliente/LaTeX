@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.10)  23 JAN 2024 13:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.10)  25 JAN 2024 17:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./tables.tex
-(tables.tex
+**./eqn.tex
+(eqn.tex
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-01>
 (C:\Users\jflores\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -160,8 +160,11 @@ dftex.def
 File: l3backend-pdftex.def 2023-10-23 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count275
 \l__pdf_internal_box=\box53
-) (tables.aux)
-\openout1 = `tables.aux'.
+) (eqn.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+)
+\openout1 = `eqn.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
@@ -205,53 +208,51 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 13.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
 
 (C:\Users\jflores\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
 
 
 (C:\Users\jflores\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (96.22113pt too wide) in paragraph at lines 14--44
-[][] 
- []
+[1
 
-[1{C:/Users/jflores/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(tables.aux)
+{C:/Users/jflores/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (eqn.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-01>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3895 strings out of 474592
- 60796 string characters out of 5744854
- 1943533 words of memory out of 5000000
- 26065 multiletter control sequences out of 15000+600000
- 560449 words of font info for 46 fonts, out of 8000000 for 9000
+ 3887 strings out of 474592
+ 60550 string characters out of 5744854
+ 1931533 words of memory out of 5000000
+ 26059 multiletter control sequences out of 15000+600000
+ 559768 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,65p,281b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\jflores\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
-rm1000.pk><C:/Users/jflores/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb><C:/Users/jflores/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmmi7.pfb><C:/Users/jflores/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jflores/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/jflores/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jflores/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/User
-s/jflores/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.p
-fb>
-Output written on tables.pdf (1 page, 89641 bytes).
+ 57i,6n,65p,222b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/jflores/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmex10.pfb><C:/Users/jflores/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb><C:/Users/jflores/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi5.pfb><C:/Users/jflores/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/jflores/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jflores/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/jflore
+s/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Use
+rs/jflores/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Users/jflores/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb>
+Output written on eqn.pdf (1 page, 95430 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
+ 51 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
