@@ -1,24 +1,15 @@
-\chapter{Dynamic Energy Budget model for \textit{Engraulis ringens}}\label{Chap4}
+\chapter{A full life cycle Dynamic Energy Budget (DEB) model for anchovy \textit{Engraulis ringens} in the northern Humboldt Current system (NHCS)}\label{Chap4}
 
 \clearpage
 \section{Introduction}
 
-Dynamic Energy Budget (DEB) is a biological theory which takes individuals as dynamic systems, considered as the basic level of metabolic organization, relatively easy to make energy and mass balances. This theoretical framework allows us to model the allocation of energy and nutrients in living organisms through its entire life cycle \citep{Kooi2009}, using theoretical assumptions that have remained valid during its 40 years of development \citep{Kooi2020} making it comparable to other approaches in the goal of understanding how an individual and the surrounding environment interact.\\
+The Dynamic Energy Budget (DEB) theory has been successfully applied to several marine species that are important for fisheries worldwide by taking individuals as dynamic systems, considered as the basic level of metabolic organization, relatively easy to make energy and mass balances allowing us to model the allocation of energy and nutrients in living organisms through its entire life cycle (Kooijman 2009).\\
 
-As water-breathing ectotherms, fish have complex life cycles that often include distinct stages such as eggs, larvae, juveniles, and adults. Fish exhibit a wide range of variation in their morphology, physiology, and behavioral adaptations, as well as the environments they inhabit \citep{Barl1961} in which a fish acquire, retain, and transfer energy to higher trophic levels of the ecosystem, the variability of the energy source during different stages of their life cycle being important \citep{Boul1981}.\\
+Marine fish have complex life cycles that consist of distinct developmental stages, including eggs, larvae, juveniles, and adults (Pepin 1991; Lika et al. 2014). The duration of each stage varies depending on the species and the environment surrounding each individual. This variation has been documented in studies by Green and Fisher (2004), and Fontes et al. (2011).\\
 
-Fish growth rates are determined by both temperature and prey availability (\ref{Chap3}), both of which play a critical role in understanding foraging dynamics and feeding behavior that influence growth physiology. Physiology-based models of fish life cycles are an exciting and rapidly emerging field; models that incorporate physiology typically focus on bioenergetics because of the inherent link to ecological performance.\\
+When describing the life cycle of a fish using a mechanistic model, it is generally assumed that isomorphic growth occurs. This growth is often modeled using a von-Bertalanffy growth model, which can reproduce general growth patterns. The model focuses on the juvenile and adult stages, as growth data for these stages are more accessible for modeling (Von Bertalanffy 1957; Marzloff et al. 2009). However, during early life stages, non- isomorphic development has been observed in different anchovy species (Palomera et al. 1988; Takahashi et al. 2001; Moreno et al. 2011) and other reported teleost fish species (Klingenberg and Froese 1991; Osse and van den Boogaart 1995; Lika et al. 2014). Thus, to accurately describe the growth patterns of the early life stages (eggs and larvae), it is necessary to consider the acceleration of growth during these stages, well modeled by a Gompertz curve (Gompertz 1825; Kooijman et al. 2011) and replicate the growth patterns of juveniles and adults. This modelling approach, an extension of the standard DEB model (DEB_std), which we will refer to from now on as DEB_abj, has already been used when studying similar species to the Peruvian anchovy (Pecquerie et al. 2009; Gatti et al. 2017; Menu et al. 2023). Also, when DEB theory has been coupled with IBM, has proven useful in shedding light on phenomena that are difficult to test in natural environments, such as larval growth influenced by the environment (Martin et al. 2012; David et al. 2019; Bueno-Pardo et al. 2020; Flores-Valiente et al. 2023) or complex fish population patterns arising from individual behavioral responses to their environment (Martin et al. 2013; Beaudouin et al. 2015; Brochier et al. 2018; Liu et al. 2023).\\
 
-In chapter \ref{Chap3}, we began to study the effect of temperature and food availability for the Peruvian anchoveta (\textit{\gls{ringens}}) in the ecosystem, but it is necessary to have a bioenergetic model with growth parameters properly estimated for this species, with data from this species. Furthermore, taking into account that it is well known that fish present an acceleration of growth during their early larval life stages that ends with metamorphosis, commonly called the``transition period", a feature that is not implemented in the DEB growth model parameter set used by \citep{PethRoos2013}, we will describe a growth model that includes the acceleration of metabolism during this transition period and that will help us to have a more realistic tool to understand the larval recruitment phenomenon. It is worth noting that although the estimated parameters will be useful for the entire life cycle of anchoveta, later (Chapter \ref{Chap5}) we will focus on the larval growth period and how environmental variables affect recruitment, but first, we need to understand why there are two different versions of the DEB model and what their differences are.\\
-
-The standard version of the \acrshort{deb} model belongs to the class of ``s-models'', which assume \textbf{isomorphy} throughout the entire life cycle, providing a technical specification of the ``$std$" model. It is used to understand the difference between morphological life stages and functional life stages. Morphological life stages are assigned based on a description of the species or group, in our case, fish. A single model captures the entire life cycle from conception to death, and transitions (embryo, juvenile, adult) between functional life stages are construed as (metabolic) switches. The ``embryo'' grows, matures, but does not feed; ``juveniles'' grow, mature, feed, but are not ready to reproduce, an exclusive characteristic of ``adults''.\\
-
-The \acrshort{deb} model with type $M-acceleration$ is like the $std-model$, but growth acceleration occurs between birth ($b$) and metamorphosis ($j$), and before and after acceleration \textbf{isomorphy} is assumed. A technical specification of the accelerated model will be ``$abj$". Metamorphosis is before puberty and occurs at maturity $E_{H}^j$, so $E_{H}^b \leq E_{H}^j \leq E_{H}^p$, which are energy thresholds, which may or may not correspond to changes in morphology. Type $M-acceleration$ has never been found in cartilaginous fish, amphibians, reptiles, birds or mammals, and typically occurs in taxa with larval stages. Since $DEB_{abj}$ is an extension of $DEB_{std}$, only two parameters ($\left \{ \dot{p}_\mathrm{Am} \right \}$ and $\dot{v}$) will be affected during the acceleration period. The transitions in $DEB_{abj}$ (embryo, juvenile, adult), are understood as in $DEB_{std}$.\\
-
-According to the DEB theory, the initial metabolic process, referred to as ``ingestion'', involves the individual (in this case, an anchoveta) capturing food from its environment. Food is then assimilated and stored in reserves ($E$), which can be utilized for maintenance, growth, and reproduction. The second metabolic process, known as ``dissipation'', refers to the metabolic or maintenance work that does not generate new biological mass. This includes somatic maintenance, maintenance of maturity, as well as growth and reproduction costs. In the third metabolic process, known as 'body structure', a portion of the reserve is utilized to develop somatic structures. In the fourth metabolic process, ``reproduction'', a portion of the reserve is allocated for juvenile maturation and adult reproductive buffer. In adults, if there is no food assimilation because of starvation the
-reproductive buffer is utilized to pay maintenance costs \citep{PethRoos2013,NisbMull2000,NisbJusu2012}.\\
-
-The purpose of this chapter is to introduce a comprehensive life cycle model of \textit{\gls{ringens}}. The growth parameters of this model will serve to re-validate the larval recruitment results obtained by \citep{FlorLett2023}. Additionally, this model will be useful for future studies of biomass variability and population dynamics using an \gls{ibm} as well as \citep{BrocAuge2018} conducted a similar study on the west coast of Africa with another species of small pelagic fish.\\
+Then, the aims of this chapter/article/paper is to produce the first DEB model for Peruvian anchovy (Engraulis ringens),  with a specific set of parameters estimated  that includes growth acceleration (DEB_abj)  during the larval period to metamorphosis; and to compare the patterns of larval recruitment with  a previous growth model implemented by Flores-Valiente et al. (2023) using an Ichthyop-DEB model and highlight its differences from the standard version (DEB_std).\\
 
 \clearpage
 \section{Methods}
@@ -126,17 +117,39 @@ The supplementary material (Chapter \ref{DEBabjEqn}) provides a detailed descrip
 
 \section{Results}
 
-The parameters of the DEB model for Peruvian anchovy were successfully used to reproduce the larval growth patterns (\ref{Chap4DEBvsData}) reported by \citep{RiouOfel2021,OfelMoya2023}, with some variability due to the use of different functional responses (f) between 0.1 and 1.\\
+The parameters of the DEB model for Peruvian anchovy (\gls{ringens}) were successfully used to reproduce the larval growth patterns (Fig. \ref{Chap4DEB_out_f1_vsArturoLab}) reported by \citep{RiouOfel2021,OfelMoya2023} assuming a functional response in which food is not a constraint ($f=1$).\\
 
 \begin{figure}[H]
-	\includegraphics[width=1.0\textwidth]{figures/Chap4DEBvsData.png}
+	\includegraphics[width=1.0\textwidth]{figures/Chap4DEB_out_f1_vsArturoLab.png}
 	\centering
-	\caption{Comparison of Peruvian anchovy simulated larval growth and laboratory observations from \cite{RiouOfel2021} (a) and in situ observations from \cite{MoreClar2011} (b). Thick lines correspond to average size predictions considering ten $f$ values from 0.1 to 1 with 0.1 steps (food limitation factor, see section 2.1.6) at $19$\textdegree $C$ (red), $18$\textdegree $C$ (green) and $15$\textdegree $C$ (blue) in (a) and at $16$\textdegree C in (b). Dotted lines correspond to standard deviation of the simulated larval growth. Colored dots show the corresponding observations. The bioenergetic model was calibrated using the data points shown in the graph. Note that the scales are different in the two panels.}
-	\label{Chap4DEBvsData}
+	\caption{Comparison of Peruvian anchovy simulated larval growth (lines) and laboratory observations (dots) from \cite{RiouOfel2021,OfelMoya2023}. The bioenergetic model was calibrated using the data points shown in the graph.}
+	\label{Chap4DEB_out_f1_vsArturoLab}
+\end{figure}
+
+%\begin{figure}[H]
+%	\includegraphics[width=1.0\textwidth]{figures/Chap4DEBvsData.png}
+%	\centering
+%	\caption{Comparison of Peruvian anchovy simulated larval growth and laboratory observations from \cite{RiouOfel2021} (a) and in situ observations from \cite{MoreClar2011} (b). Thick lines correspond to average size predictions considering ten $f$ values from 0.1 to 1 with 0.1 steps (food limitation factor, see section 2.1.6) at $19$\textdegree $C$ (red), $18$\textdegree $C$ (green) and $15$\textdegree $C$ (blue) in (a) and at $16$\textdegree C in (b). Dotted lines correspond to standard deviation of the simulated larval growth. Colored dots show the corresponding observations. The bioenergetic model was calibrated using the data points shown in the graph. Note that the scales are different in the two panels.}
+%	\label{Chap4DEBvsData}
+%\end{figure}
+
+In addition, in Fig. \ref{Chap4DEB_out_fMaxMin_vsMoreno2011_larva} we compared the average growth curves resulting from predictions considering ten $f$ values from 0.1 to 1 with 0.1 steps (food limitation factor) versus growth records during their larval stage in individuals reported in \cite{MoreClar2011}, this is because in the natural environment, it is not possible to determine an exact value of the functional response ($f$). It can also be observed that it is possible to reproduce the growth pattern after the larval stage (Fig. \ref{Chap4DEB_out_f1vsMoreno2011_adulto}).\\
+
+\begin{figure}[H]
+	\includegraphics[width=1.0\textwidth]{figures/Chap4DEB_out_fMaxMin_vsMoreno2011_larva.png}
+	\centering
+	\caption{Comparison of Peruvian anchovy simulated larval growth (blue line) and observations (black dots) from \cite{MoreClar2011}. Dotted lines show the maximum ($f = 1$) and minimum ($f=0.1$)predicted growth obtained with the DEB model.}
+	\label{Chap4DEB_out_fMaxMin_vsMoreno2011_larva}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=1.0\textwidth]{figures/Chap4DEB_out_f1vsMoreno2011_adulto.png}
+	\centering
+	\caption{Same as Fig. \ref{Chap4DEB_out_fMaxMin_vsMoreno2011_larva}, but for post larval stage.}
+	\label{Chap4DEB_out_f1vsMoreno2011_adulto}
 \end{figure}
 
 Starvation tests were conducted on larvae of varying sizes (0.5 and $3 cm$) to investigate the impact of food deprivation on larval recruitment in future simulations. In non-fed conditions, an increase in temperature leads to a starvation effect in fewer days. Furthermore, the \textit{\gls{encrasicolus}} is less sensitive to lack of food than the \gls{ringens}.\\
-
 
 \begin{figure}[H]
 	\includegraphics[width=1.0\textwidth]{figures/Chap4Starvation_compar.png}

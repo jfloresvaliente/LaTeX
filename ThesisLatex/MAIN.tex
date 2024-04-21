@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{book} % If you want A4 format
 %\documentclass[b5paper,12pt]{book} % If you want b5 format
 
+%%%%%%%%%% SETTINGS %%%%%%%%%%
 \input{settings}
 
 \author{Jorge Arturo FLORES VALIENTE}
@@ -11,7 +12,7 @@
 
 \usepackage[english]{babelbib}
 
-
+%%%%%%%%%% START DOCUMENT %%%%%%%%%%
 \begin{document}
 
 \frontmatter
@@ -24,29 +25,31 @@
 %\input{copyright}
 %\input{acknowledgements}
 
+%----- Chapter Structure -----%
 \mainmatter
 \linenumbers
 
 \input{Cap1}
 \input{Cap2}
 \input{Cap3}
-\input{Cap4}
+%\input{Cap4}
 %\input{Cap5}
-\input{Appendix1}
+%\input{Appendix1}
 
 \nolinenumbers
 \backmatter
 
-% Imprimir Bibliografia
-\renewcommand\bibname{References} % Cambiar titulo a la bibliografia
-\bibliographystyle{bst/authordate1}
+%----- Print Bibliography -----%
+\renewcommand\bibname{References}   % Change bibliography title.
+\bibliographystyle{bst/authordate1} % Directory where the references are stored.
 %\bibliographystyle{bst/authordate3}
-%\bibliography{bib/ThesisBib}
 
-{\footnotesize
-\bibliography{bib/ThesisBib}}
+%----- Format the bibliography using a smaller font size -----%
+{\footnotesize \bibliography{bib/ThesisBib}}
+%{\scriptsize \bibliography{bib/ThesisBib}}
 
-% Imprimir Glosario
+%%----- Print glossary -----%
 \printnoidxglossary
 
 \end{document}
+%%%%%%%%%% END DOCUMENT %%%%%%%%%%
