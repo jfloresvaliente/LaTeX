@@ -1,53 +1,65 @@
 \chapter{General discussion and conclusions}\label{Chap5}
 
-Many studies focused on survival during the early life history stages, and the causal mechanisms and how impacts on subsequent recruitment. Of the various recruitment hypotheses, those regarding starvation can be addressed by the Ichthyop-DEB tool developed in this manuscript. For example, critical period hypothesis (Hjort 1914).\\
+Then, the aims of this chapter/article/paper is to produce the first \acrshort{deb} model for Peruvian anchovy (\textit{\gls{ringens}}),  with a specific set of parameters estimated  that includes growth acceleration ($DEB_{abj}$)  during the larval period to metamorphosis.% and to compare the patterns of larval recruitment with  a previous growth model implemented by \citep{FlorLett2023} using an \gls{ich-deb} model and highlight its differences from the standard version ($DEB_{std}$).\\
 
-One of the first questions we can ask ourselves when choosing a model to try to answer a scientific question is: Why trust this model? And furthermore, how complex does this model need to be? This will depend on the question, the scale of the process to be studied and the precedents of the answers to this question.\\
+\clearpage
+\section{Discusión general}
+El reclutamiento de un individuo en una población sigue siendo uno de los mayores misterios de las ciencias marinas, más aún cuando el concepto mismo de reclutamiento está en discusión y hasta es específico de cada especie (Miller et al. 1988), pero lo que es cierto para todas las especies, es que el reclutamiento está íntegramente ligado a la biomasa desovante (Cole and McGlade 1998) y las condiciones ambientales (Roy et al. 1992) que actúan a través de un amplio rango de estadios de vida.\\
 
-for the most part of fisheries is how good is the recruitment of the species. This is already a complex process that includes different agents such as environmental conditions, the state of its adult population or its adaptive capacity.\\
- 
-In this context of study, the Peruvian anchovy has been well studied, from associating environmental variables to the presence of large schools at the time of fishing to having models with equations that describe how the environment impact the species at different levels as well as the frequency and detail of the monitoring system that is targeted each year. We have focused on the modeling approach.\\
+Más allá de una definición universal de reclutamiento, nos hemos enfocado en comprender el mecanismo con el que un individuo interactúa con su ambiente, cómo este afecta su desarrollo a través de su ciclo de vida y cómo promueve/limita el éxito de reclutamiento. Es por ello que el objetivo general de esta tesis es desarrollar un modelo mecanístico que una el conocimiento de la variabilidad ambiental y el efecto directo sobre los estadios de vida temprana de la anchoveta Peruana (Engraulis ringens), siendo extensible esta técnica a otras especies de peces o recursos marinos de interés.\\
 
-Here we present the development of a modeling tool that aims to understand the impact of temperature and food availability on recruitment and survival of early life stages of aquatic species through an individual-based modeling approach (Fig. 5.1). This approach was born from adding complexity to a larval dispersal model (Brochier et al. 2008; Lett et al. 2008) to which a module was added to simulate growth using a DEB bioenergetic model (Kooijman 2009). The results of the present study give robustness to previous results (Brochier et al. 2008) on larval retention patterns where we agree that spawning depth plays a very important role in addition to a seasonal variation that depends on depth. This is quite interesting considering that over the years new versions of the hydrodynamic model of coastal circulation off Peru have been created, and these updates have maintained the general patterns. (replicabilidad de resultados, ). We can conclude that to work on E. ringens recruitment simulations, in order to save computational time and energy, we can continue with a spatial resolution of 10 km. In addition, it is recommended to use the coastal behavior called standstill, since for the purposes of our research it will not significantly affect near-shore particle transport.\\
+Por practicidad, hemos denominado “reclutamiento larval”, o simplemente “reclutamiento” a procesos ligados al transporte y crecimiento larval, procesos derivados de las corrientes oceánicas, la temperatura y la disponibilidad de alimento. Con todos estos elementos, hemos desarrollado una herramienta lagrangiana, denominada Ichthyop-DEB, con la capacidad hacer el seguimiento individual en el desarrollo de individuos de E. ringens hasta alcanzar el éxito de reclutamiento larval, limitándose a simular el movimiento pasivo de cada individuo.\\
 
-In Peru, small pelagic fish monitoring is based on spawning biomass estimation and egg and larvae surveys (Pauly and Soriano 1987; Ayón 2000; Gutiérrez et al. 2012) without explicitly accounting for spatial features (e.g. cross-shore and vertical). However, our results shows that spatial and vertical distribution also largely impact the success of recruitment. We suggest this information should be included in coupled model and observation operational system, which allows to forecast the seasonal success of recruitment. Thus, spatial monitoring of ichthyoplankton distribution should include assessment of vertical distribution. This can be achieved using multinet or, for a faster processing of the information, in situ imaging system that may allow a rapid processing (Orenstein et al. 2020).\\
+Ichthyop-DEB nos permite definir zonas de desove que pueden ser divididas horizontal y verticalmente, desde las cuales los individuos son liberados (desovados) aleatoriamente iniciando su proceso de deriva y/o desarrollo (crecimiento). Luego, sólo los individuos que cumplan con ciertos criterios serán aquellos que alcancen el éxito de reclutamiento. Ichthyop-DEB nos ofrece la opción de elegir hasta tres criterios de reclutamiento, dependiendo de la necesidad del usuario. El criterio 1, está ligado al transporte larval en función de las corrientes oceánicas y considerará como reclutados, sólo a aquellos individuos que al final de la simulación, estén dentro de la zona reclutamiento (zona también definida por el usuario). El criterio 2, agrega el proceso de crecimiento en longitud, simulado por un Modelo de Presupuesto Energético (DEB) para que el individuo alcance una talla mínima (2 cm para E. ringens) y que el individuo esté dentro de la zona de reclutamiento para considerarlo como reclutado. El criterio 3 es un procesamiento posterior a Ichthyop-DEB, del que utilizaremos una variable denominada “edad al reclutamiento”, edad que varía con cada individuo dependiendo las condiciones de temperatura y alimento. Así, un individuo que experimenta una mayor tasa de crecimiento reclutará más rápido y tendrá un “valor” superior que uno que recluta días después. Este “valor” es calculado en función de la edad de reclutamiento y una tasa de mortalidad diaria. De esta forma, Ichthyop-DEB puede ser entendida como una herramienta especializada en cuantificar el efecto del ambiente (corrientes oceánicas, temperatura y aimento) sobre los primeros estadios de vida temprana de organismos marinos durante su fase planktónica.\\
 
-Agragar a discusion
-
-¿What makes a late anchovy larva? The
-development of the caudal fin seen as a
-milestone in fish ontogeny?
-STYLIANOS SOMARAKIS1* AND NIKOLAOS NIKOLIOUDAKIS1,2 REVISAR
-
-From egg production to recruits: Connectivity and inter-annual
-variability in the recruitment patterns of European anchovy
-in the northwestern Mediterranean
-Andres Ospina-Alvarez
-
-Integration of bioenergetics in an individual-based model
-to hindcast anchovy dynamics in the Bay of Biscay
-Juan Bueno-Pardo
-
-The fisheries history of small pelagics in the Northern Mediterranean
-Elisabeth van Beveren
-
-Size, permeability and buoyancy of anchovy (Engraulis
-Encrasicolus) and sardine (Sardina Pilchardus) eggs in
-relation to their physical environment in the Bay of Biscay
-Huret
-
-Determinants of growth and selective mortality in anchovy and sardine in
-the Bay of Biscay
-Bo¨ens
-
-Comparing biological traits of anchovy and sardine in the Bay of Biscay: A modelling approach with the Dynamic Energy Budget
-Paul Gatti (1) 
-
-Modelling potential spawning habitat of sardine (Sardina pilchardus) and anchovy (Engraulis encrasicolus) in the Bay of Biscay
-Benjamin Planque (1) 
-
-Historical fluctuations in spawning location of anchovy (Engraulis encrasicolus) and sardine (Sardina pilchardus) in the Bay of Biscay during 1967?73 and 2000?2004
-Edwige Bellier (1)
-
-Characterising and comparing the spawning habitats of anchovy Engraulis encrasicolus and sardine Sardinops sagax in the southern Benguela upwelling ecosystem
-N. Twatwa ,
+%Many studies focused on survival during the early life history stages, and the causal mechanisms and how impacts on subsequent recruitment. Of the various recruitment hypotheses, those regarding starvation can be addressed by the Ichthyop-DEB tool developed in this manuscript. For example, critical period hypothesis (Hjort 1914).\\
+%
+%One of the first questions we can ask ourselves when choosing a model to try to answer a scientific question is: Why trust this model? And furthermore, how complex does this model need to be? This will depend on the question, the scale of the process to be studied and the precedents of the answers to this question.\\
+%
+%for the most part of fisheries is how good is the recruitment of the species. This is already a complex process that includes different agents such as environmental conditions, the state of its adult population or its adaptive capacity.\\
+% 
+%In this context of study, the Peruvian anchovy has been well studied, from associating environmental variables to the presence of large schools at the time of fishing to having models with equations that describe how the environment impact the species at different levels as well as the frequency and detail of the monitoring system that is targeted each year. We have focused on the modeling approach.\\
+%
+%Here we present the development of a modeling tool that aims to understand the impact of temperature and food availability on recruitment and survival of early life stages of aquatic species through an individual-based modeling approach (Fig. 5.1). This approach was born from adding complexity to a larval dispersal model (Brochier et al. 2008; Lett et al. 2008) to which a module was added to simulate growth using a DEB bioenergetic model (Kooijman 2009). The results of the present study give robustness to previous results (Brochier et al. 2008) on larval retention patterns where we agree that spawning depth plays a very important role in addition to a seasonal variation that depends on depth. This is quite interesting considering that over the years new versions of the hydrodynamic model of coastal circulation off Peru have been created, and these updates have maintained the general patterns. (replicabilidad de resultados, ). We can conclude that to work on E. ringens recruitment simulations, in order to save computational time and energy, we can continue with a spatial resolution of 10 km. In addition, it is recommended to use the coastal behavior called standstill, since for the purposes of our research it will not significantly affect near-shore particle transport.\\
+%
+%In Peru, small pelagic fish monitoring is based on spawning biomass estimation and egg and larvae surveys (Pauly and Soriano 1987; Ayón 2000; Gutiérrez et al. 2012) without explicitly accounting for spatial features (e.g. cross-shore and vertical). However, our results shows that spatial and vertical distribution also largely impact the success of recruitment. We suggest this information should be included in coupled model and observation operational system, which allows to forecast the seasonal success of recruitment. Thus, spatial monitoring of ichthyoplankton distribution should include assessment of vertical distribution. This can be achieved using multinet or, for a faster processing of the information, in situ imaging system that may allow a rapid processing (Orenstein et al. 2020).\\
+%
+%Agragar a discusion
+%
+%¿What makes a late anchovy larva? The
+%development of the caudal fin seen as a
+%milestone in fish ontogeny?
+%STYLIANOS SOMARAKIS1* AND NIKOLAOS NIKOLIOUDAKIS1,2 REVISAR
+%
+%From egg production to recruits: Connectivity and inter-annual
+%variability in the recruitment patterns of European anchovy
+%in the northwestern Mediterranean
+%Andres Ospina-Alvarez
+%
+%Integration of bioenergetics in an individual-based model
+%to hindcast anchovy dynamics in the Bay of Biscay
+%Juan Bueno-Pardo
+%
+%The fisheries history of small pelagics in the Northern Mediterranean
+%Elisabeth van Beveren
+%
+%Size, permeability and buoyancy of anchovy (Engraulis
+%Encrasicolus) and sardine (Sardina Pilchardus) eggs in
+%relation to their physical environment in the Bay of Biscay
+%Huret
+%
+%Determinants of growth and selective mortality in anchovy and sardine in
+%the Bay of Biscay
+%Bo¨ens
+%
+%Comparing biological traits of anchovy and sardine in the Bay of Biscay: A modelling approach with the Dynamic Energy Budget
+%Paul Gatti (1) 
+%
+%Modelling potential spawning habitat of sardine (Sardina pilchardus) and anchovy (Engraulis encrasicolus) in the Bay of Biscay
+%Benjamin Planque (1) 
+%
+%Historical fluctuations in spawning location of anchovy (Engraulis encrasicolus) and sardine (Sardina pilchardus) in the Bay of Biscay during 1967?73 and 2000?2004
+%Edwige Bellier (1)
+%
+%Characterising and comparing the spawning habitats of anchovy Engraulis encrasicolus and sardine Sardinops sagax in the southern Benguela upwelling ecosystem
+%N. Twatwa ,
