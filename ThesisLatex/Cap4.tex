@@ -26,7 +26,7 @@ A \acrshort{deb} accelerated growth model ($DEB_{abj}$) is derived from a standa
 
 $DEB_{std}$ describes an individual based on three state variables: reserve energy ($E$), structural volume ($V$) and reproduction buffer ($E_{R}$). An organism obtains energy from food by assimilation ($\dot{p}_{A}$), the process that transforms food into reserves ($E$), defined as a collection of metabolizable compounds that have the potential to fuel all metabolic processes of an individual and it is directly influenced by changes in food availability in the environment and does not require energy expenditure for maintenance. Reserve is continuously used and replenished, while structural material is continuously degraded and reconstructed as a result of somatic maintenance. Assimilation is taken to be proportional to the surface-area of the structural volume and maintenance is taken to be proportional to structural volume. Ingestion is assumed to follow a functional response relationship with food density and to be proportional to the structural surface area. The scaled (dimensionless and Holling type-II) functional response ($f$) ranges from 0 (starvation) to 1 (``ad libitum''). After assimilation, energy is mobilized ($\dot{p}_{C}$) and used for growth ($\dot{p}_{G}$), specifically the increase of structure ($V$), a fixed fraction of the mobilized reserve after subtracting for somatic maintenance ($\dot{p}_{S}$) which takes priority over growth and is proportional to structure. Parameters related to metabolic rates are temperature-dependent but remain constant otherwise, relative to a reference temperature $T_{1}$.\\
 
-One of the fundamental principles of \acrshort{deb} theory is homeostasis, a mechanism that serves to maintain the internal conditions of an organism in a state of equilibrium, even in the face of environmental fluctuations. This is exemplified by the relatively constant chemical composition of the body, which is observed in fish as well \citep{Kooi2009}. Consequently, the chemical composition of the reserve and structure remains constant, although their ratio may fluctuate, thereby influencing the chemical composition of the entire body. If the environmental conditions remain relatively stable, the composition of the entire fish remains constant.\\
+One of the fundamental principles of \acrshort{deb} theory is homeostasis, a mechanism that serves to maintain the internal conditions of an organism in a state of equilibrium, even in the face of environmental fluctuations. This is exemplified by the relatively constant chemical composition of the body, which is observed in fish as well \citep{Kooi2009}. Consequently, the chemical composition of the reserve and structure remains constant, although their ratio may fluctuate, thereby influencing the chemical composition of the entire body. If the environmental conditions remain relatively stable, the composition of the entire fish remains constant. The \acrshort{deb} model assumes that the reserve will be continuously used and refilled, while somatic maintenance will continuously reduce and rebuild structural material throughout the individual's life. Energy is allocated to structure and maturation/reproduction only after maintenance costs have been paid, which means, \acrshort{deb} models prioritize the metabolic cost of individual survival through somatic maintenance over growth and reproduction \citep{Kooi2009,JusuSous2017}.\\
 
 \subsubsection{Non-isomorphic growth acceleration hypothesis}
 
@@ -55,6 +55,114 @@ Between birth and metamorphosis, the individual's metabolic processes will be af
 
 Upon reaching adulthood, the level of maturity ceases to increase as the energy is redirected towards reproduction ($\dot{p}_{R}$), allocating energy to $E_{R}$, which has a value equal to zero until before reaching the adult stage. A constant fraction ($\kappa$) of the mobilized energy from reserve is allocated to maturity maintenance and reproduction. In adults, if there is no food assimilation because of starvation the reproductive buffer is utilized to pay maintenance costs \citep{BrosLlor2016,GattPeti2017,MenuPecq2023}.\\
 
+\subsection{\textbf{$DEB_{abj}$} equations and how they differ from \textbf{$DEB_{std}$}}
+
+Since $DEB_{abj}$ is an extension of the standard version ($DEB_{std}$), most of the equations are the same as described in Chapter \ref{Chap3}. These differences will then be implemented to couple the $Ichthyop-DEB_{abj}$ model.
+
+Jorge Flores-Valiente et al.\\
+
+\subsubsection{Forcing variables}\label{Chap4ForVar}
+\hfill \\
+
+$T$ Temperature ($K$) is the water temperature surrounding an individual in which \textit{\gls{ringens}} larvae were reared \citep{RiouOfel2021} and the temperature associated with the von Bertalanffy growth parameters \citep{PaloMuck1987}. Feeding conditions were \textit{ad libitum}, so we assumed a constant value for the functional response ($f = 1$).\\
+
+\subsubsection{Initial conditions of state variables (egg stage)}\label{Chap4InitCond}
+
+The age of the individual is set at zero on the day of spawning.\\
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Symbol  & Value      & Units  & Definition      \\ 
+\hline 
+$E$     & $0.99$     & $J$    & Initial Reserve \\ 
+$V$     & $0.000001$ & $mm^3$ & Initial Structure\\
+$E_{H}$ & $0$ 		  & $J$    & Cumulated energy invested into development\\
+$E_{R}$ & $0$         & $J$   & Reproduction buffer\\
+\hline 
+\end{tabular}
+
+\subsubsection{Primary parameters}\label{Chap4PriPar}
+Table \ref{param_compar} below shows the comparison of parameters used by the $DEB_{std}$ and $DEB_{abj}$ models for \textit{\gls{encrasicolus}} and \textit{\gls{ringens}}, respectively.
+
+\subsubsection{Scaled functional response}\label{Chap4resp_f}
+Same as section \ref{Chap3resp_f}
+
+\subsubsection{Temperature correction}\label{Chap4cT_corr}
+Same as section \ref{Chap3cT_corr}, but then, temperature correction affects two additional parameters.\\
+
+$\dot{v}_{T} = C_{T} \dot{v}_{T_{1}}$\\
+
+$\dot{K}_{jT} = C_{T} \dot{K}_{jT_{1}}$\\
+
+\subsubsection{Metabolic acceleration}\label{Chap4Acc}
+\hfill \\
+
+Only two parameters are impacted by growth acceleration.\\
+
+\textbf{if}	$E_{H} < E_{H}^b$\\
+
+$S_{M} = 1$ \hfill No acceleration.\\
+
+\textbf{else if} $E_{H}^b < E_{H} < E_{H}^j$\\
+
+$S_{M} = \frac{L}{L_{b}}$ \hfill Acceleration.\\
+
+\textbf{else}\\
+
+$S_{M} = \frac{L_{j}}{L_{b}}$ \hfill Constant growth.\\
+
+The $S_{M}$ parameter only accelerates growth from birth to metamorphosis.\\
+
+$\left \{ \dot{p}_\mathrm{Am} \right \}_{S_{M}} = S_{M} \left \{ \dot{p}_\mathrm{Am} \right \}_{T}$\\
+
+$\dot{v}_{S_{M}} = S_{M} \dot{K}_{jT}$\\
+
+\subsubsection{Fluxes ($Jd^{-1}$)}\label{Chap4Fluxex}
+\hfill \\
+
+\textbf{if}	$E_{H} < E_{H}^b$\\
+
+$\dot{p}_\mathrm{A} = 0$ \hfill No assimilation.\\
+
+\textbf{else}\\
+
+$\dot{p}_\mathrm{A} = f \left \{ \dot{p}_\mathrm{Am} \right \}_{S_{M}} V^{2/3}$ \hfill Assimilation.\\
+
+\hfill \\
+
+$\dot{p}_\mathrm{M} = \left [ \dot{p}_{M} \right ]_{T} V$ \hfill Volume-related somatic maintenance.\\
+
+$\dot{p}_{C} = \frac{E}{V}*\frac{\left [ E_{G} \right ]\dot{v}_{S_{M}}V^{2/3}+\left [ \dot{p}_{M} \right ]_{T}}{\kappa\frac{E}{V}+\left [ E_{G} \right ]}$ \hfill Mobilization of energy.\\
+
+$\dot{p}_{J} = \dot{K}_{jT} E_{H}$ \hfill Maturity maintenance.\\
+
+\subsubsection{Differential equations}\label{Chap4DiffEq}
+Same as section \ref{Chap3DiffEq}, and additionally.
+
+\textbf{if} $E_{H} < E_{H}^p$\\
+
+$\frac{dE_{H}}{dt} = (1 - \kappa) \dot{p}_{C} - \dot{p}_{J}$\\
+
+$\frac{dE_{R}}{dt} = 0$\\
+
+\textbf{else}\\
+
+$\frac{dE_{H}}{dt} = 0$\\
+
+$\frac{dE_{R}}{dt} = (1 - \kappa) \dot{p}_{C} - \dot{p}_{J}$\\
+
+\subsubsection{Integration}\label{Chap4Integ}
+Same as section \ref{Chap3Integ}, and additionally.
+
+$E_{H}\left ( t + \Delta t \right ) = E_{H}\left ( t \right ) + \frac{dE_{H}}{dt}\Delta t$ \\
+
+$E_{R}\left ( t + \Delta t \right ) = E_{R}\left ( t \right ) + \frac{dE_{R}}{dt}\Delta t$ \\
+
+With $\Delta t = 0.083 d \left (=2hours\right )$
+
+\subsubsection{Observable variables}\label{Chap4ObsVar}
+Same as section \ref{Chap3ObsVar}, and additionally, $\delta_{M}$ is calculated as in eq. \ref{shape_dinam}.
+
 \subsection{Data sources and parameter estimation}
 
 The simultaneous integration of disparate data sources, each exhibiting varying degrees of quality, often proves to be a significant challenge when attempting to obtain or estimate model parameters. It is here that our data collection is based on a specific data source model, a ``zero-variate'' data concerning a single value associated to a variable and ``uni-variate'' data, associated to a set of paired numbers \citep{MarqLika2019}. Fig. \ref{Chap4AmP_flow} details the flow chart of the Add my Pet ($AmP$) project parameter estimation and the full details process can be found in \cite{MarqAugu2018}. This method minimizes the sum of squared deviations between model predictions and observations, with weight coefficients set to equal the inverse squared data to remove unit effects.\\
@@ -62,7 +170,7 @@ The simultaneous integration of disparate data sources, each exhibiting varying 
 \begin{figure}[ht]
 	\includegraphics[width=1.0\textwidth]{figures/Chap4AmP_flow.png}
 	\centering
-	\caption{The architectural framework of the $AmP$ tool is presented. Green rectangles represent user-defined files, specifically: \textbf{$run\_my\_pet$} (run a parameter estimation), \textbf{$mydata\_my\_pet$} (for zero-variate and uni-variate data collection), \textbf{$pars\_init\_my\_pet$} (for the initial values of the parameters to be estimated), and \textbf{$predict\_my\_pet$} (to specify details of parameter estimation). The orange rectangles represent the output. ``\textbf{$my\_pet$}'' refers to the species in question that is the reason for parameter estimation.}
+	\caption{The architectural framework of the $AmP$ tool is presented. Green rectangles represent user-defined files, specifically: \textbf{$run\_my\_pet$} (run a parameter estimation), \textbf{$mydata\_my\_pet$} (for zero-variate and uni-variate data collection), \textbf{$pars\_init\_my\_pet$} (for the initial values of the parameters to be estimated), and \textbf{$predict\_my\_pet$} (to specify details of parameter estimation). The orange rectangles represent the output. ``\textbf{$my\_pet$}'' refers to the species in question that is the reason for parameter estimation. Figure taken from \citep{MarqAugu2018}.}
 	\label{Chap4AmP_flow}
 \end{figure}
 
@@ -72,7 +180,7 @@ Table \ref{zero-variate} presents the data collection for \textbf{\gls{ringens}}
 
 The age at hatching ($a_{h}$) was estimated at 2,288 $days$, while the time elapsed from hatching to birth ($t_{b}$, understood as the age at the first feeding of the individual) was calculated at 3,805 $days$. Metabolic metamorphosis ($t_{j}$, cessation of growth acceleration) occurs 65.34 $days$ after hatching. The age at puberty ($t_{p}$), when the individual begins to accumulate energy for reproductive purposes, would be reached at 274.8 $days$ after birth (first feeding). Given that this species does not typically live for a long period of time, it was postulated that its lifespan ($a_{m}$	) would be equivalent to 1,540 $days$. The initial energy content ($E0$) of an engraulid egg is assumed to be close to 1 $J$ ($\sim$0.9672 $J$) while its initial volume ($V0$, structure) is estimated to be close to zero (0.0002285 $cm^3$).\\
 
-In the case of lengths ($cm$), it can be observed that the available data employs two distinct measures: the standard length and the total length. To address this issue, a relationship between the two measurement types has been proposed, based on a correlation observed in \href{https://www.fishbase.se/summary/Engraulis-ringens.html}{Fishbase}, as shown in equation \ref{LS_LT}, where $TL = Total length$ and $SL = Standard length$.
+In the case of lengths ($cm$), it can be observed that the available data employs two distinct measures: the standard length and the total length. To address this issue, a relationship between the two measurement types has been proposed, based on a correlation observed in \href{https://www.fishbase.se/summary/Engraulis-ringens.html}{Fishbase}, as shown in equation \ref{LS_LT}, where $TL = Total\: length$ and $SL = Standard\: length$.
 
 \begin{equation}
 	TL = 1.141 (SL) 
@@ -82,6 +190,23 @@ In the case of lengths ($cm$), it can be observed that the available data employ
 The standard length at hatching ($L_{h}$) was estimated to be 0.2971 $cm$, while the standard length at yolk absorption ($L_{b}$) was estimated at 0.5499 $cm$. Subsequently, the organism undergoes a rapid growth phase, reaching a length of 1.583 $cm$ at the point of metabolic metamorphosis ($L_{j}$). When the individual reaches 11.13 $cm$, it begins to accumulate energy for reproduction ($L_{p}$) and continues to grow up to 20 $cm$, when it reaches its ultimate length ($L_{i}$) and its ultimate wet weight ($W_{wi}$,85 $g$). Once the individual begins to accumulate energy for reproduction, it reaches a maximum daily reproduction rate ($Ri$) of 2145 oocytes ($\#/d$) with a strategy of 20 spawnings per year (communication with experts).\\
 
 The last seven parameters in the Table \ref{zero-variate} refer to pseudo data ($psd.$), which help in parameter estimation, giving a weight to a specific variable when performing a Ballesian statistical estimation.\\
+
+\subsubsection{Uni-variate data}
+
+The uni-variate data (Table \ref{uni-variate}) refer to laboratory larval rearing experiments at two temperatures (Fig. \ref{Chap4LarvaDataVSModel}, blue line: 14.5 \textdegree C and red line: 18.5 \textdegree C), both under conditions of total food satiation ($f=1$), where age is expressed in days after hatching ($d$) and standard length in centimeters ($cm$) \citep{RiouOfel2021}. Using von Bertalanffy growth parameters \citep{PaloMuck1987}, (Fig. \ref{Chap4AdultDataVSModel}) point data were obtained for the average 4-year life span of \textit{\gls{ringens}} where age is expressed in days since birth ($d$,first feeding) and total length in centimeters ($cm$).\\
+
+The length-weight ratio (Fig. \ref{Chap4LengthVSWeight}) includes individuals from 12 to 17 $cm$ with a weight range between 10 and 45 grams ($g$). These data were obtained from the literature \citep{Mina1968} while the data on fecundity (Fig. \ref{Chap4LengthVSOocytes}) come from surveys conducted by IMARPE, and correspond to the relationship between the length ($cm$) and the number of oocytes per batch ($\#$) \citep{PereBuit2000}.
+
+\clearpage
+\section{Results}
+
+\subsection{Zero-variate and univariate data prediction}
+
+The fully parameterized $DEB_{abj}$ model exhibits a high degree of accuracy to the characteristics observed in the existing dataset on \textit{\gls{ringens}}. A comparison of the zero-variate data in Table \ref{zero-variate} indicates a satisfactory correspondence between the model predictions and observations. The embryonic stage of development is particularly well captured by aspects of early development, including the age at hatching ($a_{h}$), egg volume ($V0$), caloric value of the egg ($E0$), and standard length at hatch ($L_{h}$), with a low relative error value. Age at birth after hatch ($t_{b}$) and length at birth ($L_{b}$, standard length at yolk-absorption, understood as the time at which the individual initiates food intake) were also well represented by the model. Given that the age and standard length of metamorphosis ($t_{j}$, $L_{j}$) data for \textit{\gls{ringens}} are related to changes in morphology and not to an energy threshold, the model predictions exhibit a slight variation from the data. The age at which puberty begins ($t_{p}$), understood as the time at which the individual begins to accumulate energy for reproduction, varies relatively with respect to the data. However, total length at puberty ($L_{p}$) is closer to the data source. The model also demonstrated an accurate representation of the life spam ($a_{m}$) and ultimate total length ($L_{i}$) as well as the ultimate wet weight ($W_{wi}$). The maximum reproduction rate ($R_{i}$) slightly overestimated the values with respect to the data source.\\
+
+The patterns of larval growth, adult growth, length-weight and length-oocyte relationships (uni-variate data source, Table \ref{uni-variate}) were accurately reproduced by the \acrshort{deb} parameter set estimated for \textit{\gls{ringens}} (Table \ref{param_compar}). The model successfully captures the acceleration of growth rate in the larval stage, especially up to 30 $days$ after hatching (Fig. \ref{Chap4LarvaDataVSModel}), which increases by a factor of 4.5 when individuals are exposed to a temperature of 18.5 \textdegree C (from 0.3 $cm$ to nearly 1.5 $cm$) and by a factor of 1.8 when individuals are exposed to a temperature of 14.5 \textdegree C (from 0.6 $cm$ to nearly 1.1 $cm$). Adult growth was also well represented reaching asymptotic growth at about 18.5 $cm$ (Fig. \ref{Chap4AdultDataVSModel}).\\
+
+In the adult phase, the length-weight relationship showed an allometric relationship of xx (\textbf{ask for the blue curve equation}) (Fig. \ref{Chap4LengthVSWeight}) while we observed in Fig. \ref{Chap4LengthVSOocytes} that the number of oocytes ($\#$) increased in direct proportion to the total length ($cm$).\\
 
 %\begin{landscape}
 \begin{table}[H]
@@ -277,14 +402,8 @@ Reproduction efficiency		&
 \end{table}
 %\end{landscape}
 
-\subsubsection{Uni-variate data}
-
-The uni-variate data (Table \ref{uni-variate}) refer to laboratory larval rearing experiments at two temperatures (Fig. \ref{Chap4LarvaDataVSModel}, blue line: 14.5 \textdegree C and red line: 18.5 \textdegree C), both under conditions of total food satiation ($f=1$), where age is expressed in days after hatching ($d$) and standard length in centimeters ($cm$) \citep{RiouOfel2021}. Using von Bertalanffy growth parameters \citep{PaloMuck1987}, (Fig. \ref{Chap4AdultDataVSModel}) point data were obtained for the average 4-year life span of \textit{\gls{ringens}} where age is expressed in days since birth ($d$,first feeding) and total length in centimeters ($cm$).\\
-
-The length-weight ratio (Fig. \ref{Chap4LengthVSWeight}) includes individuals from 12 to 17 $cm$ with a weight range between 10 and 45 grams ($g$). These data were obtained from the literature \citep{Mina1968} while the data on fecundity (Fig. \ref{Chap4LengthVSOocytes}) come from surveys conducted by IMARPE, and correspond to the relationship between the length ($cm$) and the number of oocytes per batch ($\#$) \citep{PereBuit2000}.
-
 %\begin{landscape}
-\begin{table}[H]
+\begin{table}[ht]
 \centering
 \begin{adjustbox}{width=1.0\textwidth}
 \small
@@ -344,41 +463,13 @@ Total length vs. Number of oocytes per batch &
 \hline
 \end{NiceTabular}
 \end{adjustbox}
-\caption{Same as table 1, but for uni-variate data.} 
+\caption{Same as table \ref{zero-variate}, but for uni-variate data.} 
 \label{uni-variate}
 \end{table}
 %\end{landscape}
 
-\subsection{\textbf{$DEB_{abj}$} equations and how they differ from \textbf{$DEB_{std}$}}
-
-Since $DEB_{abj}$ is an extension of the standard version ($DEB_{std}$), most of the equations are the same as described in Chapter \ref{Chap3}. These differences will then be implemented to couple the $Ichthyop-DEB_{abj}$ model.
-
-Jorge Flores-Valiente et al.\\
-
-\subsubsection{Forcing variables}\label{Chap4ForVar}
-\hfill \\
-
-$T$ Temperature ($K$) is the water temperature surrounding an individual in which \textit{\gls{ringens}} larvae were reared \citep{RiouOfel2021} and the temperature associated with the von Bertalanffy growth parameters \citep{PaloMuck1987}. Feeding conditions were \textit{ad libitum}, so we assumed a constant value for the functional response ($f = 1$).\\
-
-\subsubsection{Initial conditions of state variables (egg stage)}\label{Chap4InitCond}
-
-The age of the individual is set at zero on the day of spawning.\\
-
-\begin{tabular}{|c|c|c|c|}
-\hline 
-Symbol  & Value      & Units  & Definition      \\ 
-\hline 
-$E$     & $0.99$     & $J$    & Initial Reserve \\ 
-$V$     & $0.000001$ & $mm^3$ & Initial Structure\\
-$E_{H}$ & $0$ 		  & $J$    & Cumulated energy invested into development\\
-$E_{R}$ & $0$         & $J$   & Reproduction buffer\\
-\hline 
-\end{tabular}
-
-\subsubsection{Primary parameters}\label{Chap4PriPar}
-Table \ref{param_compar} below shows the comparison of parameters used by the $DEB_{std}$ and $DEB_{abj}$ models for \textit{\gls{encrasicolus}} and \textit{\gls{ringens}}, respectively.
-
-\begin{table}[H]
+%\begin{landscape}
+\begin{table}[ht]
 \centering
 \begin{adjustbox}{width=1.2\textwidth}
 \begin{tabular}{c|c|c|c|l|c|c}
@@ -538,13 +629,20 @@ $cm. d^{-1}$																					&
 \makecell[l]{Energy conductance \\ (before and after metamorphosis for \textit{E. ringens})}	&
 -																								&
 $AmP$																							\\
-$\delta_{M}$					& 
+$\delta_{Mlarvae}$				& 
 0.152							& 
 0.1889							& 
 -								& 
 Shape coefficient for larvae	& 
 -								&
 $AmP$							\\
+$\delta_{Madult}$			& 
+0.169						& 
+0.1905						& 
+-							& 
+Shape coefficient for adult	& 
+-							&
+$AmP$						\\
 $S_{M}$								& 
 -									& 
 $L_{j}/L_{b} = 5.8674$				& 
@@ -554,293 +652,19 @@ Metabolic acceleration at $f = 1$	&
 $AmP$								\\
 \end{tabular}
 \end{adjustbox}
-\caption{Primary parameters (for both species, rates are at reference temperature $T_{1} = 293 K$  [$=20$\textdegree $C$], in order to facilitate comparison). This study employs a parameter optimization algorithm : $AmP$.}
+\caption{Primary parameters (for both species, rates are at reference temperature $T_{1} = 293 K$  [$=20$\textdegree $C$], in order to facilitate comparison). This study employs a parameter optimization algorithm : $AmP$. The degree of freedom (Free column) indicates whether a parameter was estimated in this study (1) or obtained from literature or experimental data (0).}
 \label{param_compar}
 \end{table}
-
-\subsubsection{Scaled functional response}\label{Chap4resp_f}
-Same as section \ref{Chap3resp_f}
-
-\subsubsection{Temperature correction}\label{Chap4cT_corr}
-Same as section \ref{Chap3cT_corr}, but then, temperature correction affects two additional parameters.\\
-
-$\dot{v}_{T} = C_{T} \dot{v}_{T_{1}}$\\
-
-$\dot{K}_{jT} = C_{T} \dot{K}_{jT_{1}}$\\
-
-\subsubsection{Metabolic acceleration}\label{Chap4Acc}
-\hfill \\
-
-Only two parameters are impacted by growth acceleration.\\
-
-\textbf{if}	$E_{H} < E_{H}^b$\\
-
-$S_{M} = 1$ \hfill No acceleration.\\
-
-\textbf{else if} $E_{H}^b < E_{H} < E_{H}^j$\\
-
-$S_{M} = \frac{L}{L_{b}}$ \hfill Acceleration.\\
-
-\textbf{else}\\
-
-$S_{M} = \frac{L_{j}}{L_{b}}$ \hfill Constant growth.\\
-
-The $S_{M}$ parameter only accelerates growth from birth to metamorphosis.\\
-
-$\left \{ \dot{p}_\mathrm{Am} \right \}_{S_{M}} = S_{M} \left \{ \dot{p}_\mathrm{Am} \right \}_{T}$\\
-
-$\dot{v}_{S_{M}} = S_{M} \dot{K}_{jT}$\\
-
-\subsubsection{Fluxes ($Jd^{-1}$)}\label{Chap4Fluxex}
-\hfill \\
-
-\textbf{if}	$E_{H} < E_{H}^b$\\
-
-$\dot{p}_\mathrm{A} = 0$ \hfill No assimilation.\\
-
-\textbf{else}\\
-
-$\dot{p}_\mathrm{A} = f \left \{ \dot{p}_\mathrm{Am} \right \}_{S_{M}} V^{2/3}$ \hfill Assimilation.\\
-
-\hfill \\
-
-$\dot{p}_\mathrm{M} = \left [ \dot{p}_{M} \right ]_{T} V$ \hfill Volume-related somatic maintenance.\\
-
-$\dot{p}_{C} = \frac{E}{V}*\frac{\left [ E_{G} \right ]\dot{v}_{S_{M}}V^{2/3}+\left [ \dot{p}_{M} \right ]_{T}}{\kappa\frac{E}{V}+\left [ E_{G} \right ]}$ \hfill Mobilization of energy.\\
-
-$\dot{p}_{J} = \dot{K}_{jT} E_{H}$ \hfill Maturity maintenance.\\
-
-\subsubsection{Differential equations}\label{Chap4DiffEq}
-Same as section \ref{Chap3DiffEq}, and additionally.
-
-\textbf{if} $E_{H} < E_{H}^p$\\
-
-$\frac{dE_{H}}{dt} = (1 - \kappa) \dot{p}_{C} - \dot{p}_{J}$\\
-
-$\frac{dE_{R}}{dt} = 0$\\
-
-\textbf{else}\\
-
-$\frac{dE_{H}}{dt} = 0$\\
-
-$\frac{dE_{R}}{dt} = (1 - \kappa) \dot{p}_{C} - \dot{p}_{J}$\\
-
-\subsubsection{Integration}\label{Chap4Integ}
-Same as section \ref{Chap3Integ}, and additionally.
-
-$E_{H}\left ( t + \Delta t \right ) = E_{H}\left ( t \right ) + \frac{dE_{H}}{dt}\Delta t$ \\
-
-$E_{R}\left ( t + \Delta t \right ) = E_{R}\left ( t \right ) + \frac{dE_{R}}{dt}\Delta t$ \\
-
-With $\Delta t = 0.083 d \left (=2hours\right )$
-
-\subsubsection{Observable variables}\label{Chap4ObsVar}
-Same as section \ref{Chap3ObsVar}, and additionally, $\delta_{M}$ is calculated as in eq. \ref{shape_dinam}.
-
-
-
-%The DEB model represents an anchoveta as an individual organism through the energy content of its three state variables: 1) the Reserve ($E$); 2) the Structure ($V$); and 3) gonads, which are affected by maturation in juveniles ($E_{H}$) and reproduction in adults ($E_{R}$).\\
-
-%The DEB model assumes that the reserve will be continuously used and refilled, while somatic
-%maintenance will continuously reduce and rebuild structural material throughout the individual's life. Energy is allocated to structure and maturation/reproduction only after maintenance costs have been paid, which means, DEB models prioritize the metabolic cost of individual survival through somatic maintenance over growth and reproduction \citep{Kooi2009}.\\
-
-%This study employs a non-spatial DEB model that represents time continuously using ordinary differential equations with a $\Delta t = 0.083 d \left (=2hours\right )$ time step.\\
-%
-%The energy content dynamics of the reserve ($E$) will be provided by :\\
-%
-%$\frac{dE}{dt} = \dot{p}_\mathrm{A} - \dot{p}_{C}$\\
-%
-%where $dot{p}_\mathrm{A}$ is the rate at which anchovy assimilates energy ($Jd^-{1}$) and $\dot{p}_{C}$ is the rate that anchovy lose energy to mobilization ($Jd^-{1}$) into different processes.\\
-%
-%While the dynamics of the energy content in the structure ($V$) will be given by:\\
-%
-%$\frac{dV}{dt} = \frac{\kappa \dot{p}_{C} - \dot{p}_\mathrm{M}}{\left[E_{G} \right]}$\\
-%
-%where $\dot{p}_{C}$ is the rate that anchovy lose energy to mobilization multiplied by fraction of mobilized reserve allocated to soma, minus $\dot{p}_\mathrm{M}$, volume-related somatic maintenance, all divided by $\left[E_{G} \right]$, the volume-specific costs of structure.\\
-%
-%Table \ref{param_compar} presents a list of bioenergetic parameters for \gls{encrasicolus} and \gls{ringens}, expressed at a reference temperature of $20$ \textdegree $C$ to facilitate comparison. It is important to note that some parameters are present in one model but not in the other, and vice versa.\\
-%
-%% Tabla
-
-%
-%The supplementary material (Chapter \ref{DEBabjEqn}) provides a detailed description of the symbols, equations, and variables used to describe the bioenergetic model with acceleration for anchovy and Fig. \ref{Chap4_ringens_DEB} illustrates the energy flows (arrows) and their corresponding state variables.\\
-%
-%\begin{figure}[H]
-%	\includegraphics[width=1.0\textwidth]{figures/Chap4_ringens_DEB.png}
-%	\centering
-%	\caption{DEB model for E. ringens presented in a flow diagram.}
-%	\label{Chap4_ringens_DEB}
-%\end{figure}
-
-\clearpage
-\section{Results}
-
-
-
-
-
-%\begin{landscape}
-%\begin{table}[H]
-%\centering
-%\begin{adjustbox}{width=1.0\textwidth}
-%\small
-%\begin{NiceTabular}{l|l|l|l|l}
-%\hline
-%\multicolumn{1}{c}{\textbf{symbol}} &
-%  \multicolumn{1}{c}{\textbf{units}} &
-%  \multicolumn{1}{c}{\textbf{value}} &
-%  \multicolumn{1}{c}{\textbf{free}} &
-%  \multicolumn{1}{c}{\textbf{description}}\\
-%\hline
-%$T_{ref}$             & 
-%K                     & 
-%293.1     			   & 
-%0 					   & 
-%Reference temperature \\
-%$T_{A}$               & 
-%K                     & 
-%10000     			   & 
-%0 					   & 
-%Arrhenius temperature \\
-%z           & 
-%-           & 
-%0.5803      & 
-%1 			& 
-%zoom factor \\
-%$F_{m}$         				  &
-%$1/dcm^2$						  & 
-%6.5       						  & 
-%0 								  &
-%$F_{m}$, max spec searching rate \\
-%$\kappa_{X}$        						 & 
-%$-$                         			 &	 
-%0.8       								 & 
-%0 										 & 
-%digestion efficiency of food to reserve \\
-%$\kappa_{P}$     						    &
-%$-$ 		                           & 
-%0.1       								& 
-%0 										& 
-%faecation efficiency of food to faeces \\
-%$v$           		&
-%$cm/d$              & 
-%0.04124   			& 
-%1 					& 
-%energy conductance \\
-%$\kappa$           			 & 
-%$-$                         & 
-%0.5512    					 & 
-%1 							 & 
-%allocation fraction to soma \\
-%$\kappa_{R}$            & 
-%$-$                     & 
-%0.95                    & 
-%0 						 & 
-%reproduction efficiency \\
-%$p_{M}$          										 &
-%$J/dcm^3$												 &
-%80.71     											     &
-%1 														 &
-%$\left [  p_{M} \right ]$, vol-spec somatic maintenance \\
-%$p_{T}$          & 
-%$J/dcm^2$ &
-%0         & 
-%0 &
-%$\left \{ p_{T} \right \}$, surf-spec somatic maintenance \\
-%$K_{J}$          					   &
-%$1/d$                       		   & 
-%0.002     							   & 
-%0 									   & 
-%maturity maintenance rate coefficient \\
-%$E_{G}$          									&
-%$J/cm^3$ 											& 
-%5283     											& 
-%0 													& 
-%$\left [  E_{G} \right ]$, spec cost for structure \\
-%$E_{H}^{b}$         &
-%$J$                 &  
-%0.3889    			& 
-%1 					& 
-%maturity at birth  \\
-%$E_{H}^{j}$               &
-%$J$						   &
-%124.8                     & 
-%1 						   & 
-%maturity at metamorphosis \\
-%$E_{H}^{p}$      	&
-%$J$              	&
-%42160 				& 
-%1 					& 
-%maturity at puberty \\
-%$h_{a}$     				&
-%$1/d^2$ 					&
-%6.768e-08 					& 
-%0 							&
-%Weibull aging acceleration \\
-%$s_{G}$                  	 &
-%0.0001    					 &
-%0 							 & 
-%Gompertz stress coefficient \\
-%$E_{H}^{h}$           &
-%$J$ 				   & 
-%0.06042   			   & 
-%1 & maturity at hatch \\
-%$N_{B}$                		&
-%$-$							&
-%20        					&
-%0 							&
-%Number of batches per year \\
-%$\delta_{M_{SL}}$   & 
-%$-$                 &
-%0.1889    			& 
-%1 					& 
-%shape coefficient for standard length \\
-%$\delta_{M_{larvae}}$ 							 &
-%$-$                         					 & 
-%0.08095   										 & 
-%1 												 & 
-%shape coefficient for standard length of larvae \\
-%$f$            									& 
-%$-$                         					& 
-%1         										& 
-%0 												& 
-%scaled functional response for 0-variate data	\\
-%$f_{tL17}$ 							  	  &
-%$-$                         			  &
-%1         								  &
-%1 										  & 
-%scaled functional response for $tL17$   \\
-%$f_{tL18}$ 							  	  &
-%$-$                         			  &
-%1         								  &
-%1 										  & 
-%scaled functional response for $tL18$   \\
-%$f_{tL20}$ 							  	  &
-%$-$                         			  &
-%1         								  &
-%1 										  & 
-%scaled functional response for $tL20$   \\
-%$f_{tLlarvae}$   					 	  &
-%$-$                         			  &
-%1         								  &
-%0 										  & 
-%scaled functional response for 1-var data Rioual \\ 
-%\end{NiceTabular}
-%\end{adjustbox}
-%\caption{abj parameters at 20.0\textdegree C} 
-%\label{HolaTabla2}
-%\end{table}
 %\end{landscape}
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
 	\includegraphics[width=1.0\textwidth]{figures/Chap4LarvaDataVSModel.png}
 	\centering
 	\caption{Simulated larval growth (lines) vs. larval growth of laboratory-reared \textit{E. ringens} individuals (dots) at a constant temperature of 14.5 \textdegree C (color blue) and 18.5 \textdegree C (color red) \citep{RiouOfel2021}. Age is expressed in days ($d$) after hatching and standard length in centimeters ($cm$).}
 	\label{Chap4LarvaDataVSModel}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\includegraphics[width=1.0\textwidth]{figures/Chap4AdultDataVSModel.png}
 	\centering
 	\caption{Simulated DEB growth curve at 17 \textdegree C (blue line) vs. annual growth data (red dots) calculated from Von Bertalanffy parameters \citep{PaloMuck1987}. Age since birth is expressed in days ($d$) and total length in centimeters ($cm$).}
@@ -854,152 +678,44 @@ Same as section \ref{Chap3ObsVar}, and additionally, $\delta_{M}$ is calculated 
 	\label{Chap4LengthVSWeight}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\includegraphics[width=1.0\textwidth]{figures/Chap4LengthVSOocytes.png}
 	\centering
 	\caption{Relationship between total length ($cm$) and number ($\#$) of oocytes per batch (red dots, \cite{PereBuit2000}) compared to the fitted values obtained by the DEB model (blue line).}
 	\label{Chap4LengthVSOocytes}
 \end{figure}
 
-\begin{figure}[ht]
-	\includegraphics[width=1.0\textwidth]{figures/DEBoutVSArturoLabf1V4.png}
-	\centering
-	\caption{Comparison of simulated larval growth curves for \textit{E. encrasicolus} (blue line) and \textit{E. ringens} (red line) at different temperatures 15, 18 and 19 \textdegree C and laboratory growth observations for \textit{E. ringens} only (black dots).}
-	\label{DEBoutVSArturoLabf1V4}
-\end{figure}
+\subsection{Comparing the simulated growth of a standard and accelerated model}
+
+In Chapter \ref{Chap3}, a standard \acrshort{deb} growth model was employed to simulate larval growth patterns in \textit{\gls{ringens}} developed by \cite{PethRoos2013}. This section will focus on a comparison of performance between the standard model ($DEB_{std}$) and a growth-accelerated model ($DEB_{abj}$) developed in this study. In all subsequent simulation experiments, the non-monotonic temperature correction curve (equation \ref{C_T}) as detailed in Table \ref{TabSimusChap3}, was employed.\\
+
+Fig. \ref{Chap4DEBoutVSArturoLabf1V4} illustrates that the standard model exhibits a slight overestimation of larval growth, whereas the accelerated model accurately reflects the acceleration of growth rate during the early life stages, up to an age of 30 $days$ after hatching and a length of 2 $cm$ fitting well with larval growth data obtained from laboratory experiments at 15, 18 and 19 \textdegree C. A comparable performance was observed in both types of models up to five $days$ of age. Subsequently, the standard model demonstrated a nearly exponential increase in growth, whereas the accelerated model exhibited a higher fit to the data.\\
 
 \begin{figure}[ht]
-	\includegraphics[width=1.0\textwidth]{figures/age_transitions2SPcTcase1.png}
+	\includegraphics[width=1.0\textwidth]{figures/Chap4DEBoutVSArturoLabf1V4.png}
 	\centering
-	\caption{Simulated age at birth and age at metamorphosis}
-	\label{TallasVSdata}
+	\caption{Comparison of simulated larval growth curves by $DEB_{std}$ model (blue line) and $DEB_{abj}$ model (red line) at different temperatures a) 15, c) 18 and c) 19 \textdegree C and laboratory growth observations (black dots) for \textit{E. ringens}. Temperature correction curve of Case 1 described in Table \ref{TabSimusChap3} was used.}
+	\label{Chap4DEBoutVSArturoLabf1V4}
 \end{figure}
+
+In the $DEB_{abj}$ model, the transition sizes (birth, metamorphosis, and puberty) are based on estimated energy thresholds. The time (age) required to reach these thresholds varies with temperature. For the standard model ($DEB_{std}$), we have used the $DEB_{abj}$ sizes and calculated the age to reach each size. It should be noted that $DEB_{std}$ has no metamorphosis, for example. The experiments were limited to a range of temperature between 14 -21 \textdegree C (Fig. \ref{Chap4age_transitions2SPcTcase1}). This is because above this temperature, the time required to reach the transitions becomes disproportionately long. An increase in temperature could shorten the time at birth simulated by $DEB_{abj}$ even at temperatures above 19 \textdegree C compared to the predictions made by $DEB_{std}$.\\
 
 \begin{figure}[ht]
-	\includegraphics[width=1.0\textwidth]{figures/t_starvation_f0_V2cTcase1.png}
+	\includegraphics[width=1.0\textwidth]{figures/Chap4age_transitions2SPcTcase1.png}
 	\centering
-	\caption{Starvation experiments were conducted using the two DEB growth models for \gls{ringens} (green) and \gls{encrasicolus} (orange) larvae of varying sizes ($0.5 cm$ and $3 cm$) at different temperatures, with $f = 0$.}
-	\label{t_starvation_f0_V2}
+	\caption{Simulated a) Age at birth (first feeding) and b) age at metamorphosis (end of growth acceleration) by $DEB_{std}$ model (blue dots) and $DEB_{abj}$ model (red dots) in a temperature range between 14 and 21 \textdegree C using the temperature correction curve of Case 1 described in Table \ref{TabSimusChap3}}
+	\label{Chap4age_transitions2SPcTcase1}
 \end{figure}
 
+For the starvation experiments on larvae of two different sizes (0.5 and 3 $cm$), in order to start with the same initial conditions, the reserve ($E$) of a each larval size at 20 \textdegree C was calculated. Subsequently, the functional response was set to a value of zero ($f = 0$) to simulate starvation. The number of days until this condition was reached was then calculated. In conducting these experiments (Fig. \ref{Chap4t_starvation_f0_V2cTcase1}), we utilized a temperature range of 14 to 30 \textdegree C, a range that encompasses the coastal regions off Peru, including those experiencing during El Ni\~{n}o events. Individuals inevitably reach a state of starvation due to the inability to pay maintenance costs. As a small larva (0.5 $cm$), $DEB_{abj}$ demonstrates greater resistance (in $days$) before reaching starvation. This characteristic is reversed for larger larvae (3 $cm$), where $DEB_{std}$ has the advantage.
 
+\begin{figure}[ht]
+	\includegraphics[width=1.0\textwidth]{figures/Chap4t_starvation_f0_V2cTcase1.png}
+	\centering
+	\caption{Simulated starvation experiments were conducted using $DEB_{std}$ model (blue dots) and $DEB_{abj}$ model (red dots) for two different larval sizes (a) $0.5 cm$ and b) $3 cm$) in a temperature range between 14 and 30 \textdegree C, with $f = 0$ (no feeding). Temperature correction curve of Case 1 described in Table \ref{TabSimusChap3} was used.}
+	\label{Chap4t_starvation_f0_V2cTcase1}
+\end{figure}
 
+\section{Discussion}
 
-
-%\begin{figure}[ht]
-%	\includegraphics[width=1.0\textwidth]{figures/Diapositiva1Case1.png}
-%	\centering
-%	\caption{Ichthyop-DEB Case 1}
-%	\label{Diapositiva2Case1}
-%\end{figure}
-%
-%\begin{figure}[ht]
-%	\includegraphics[width=1.0\textwidth]{figures/Diapositiva2Case2.png}
-%	\centering
-%	\caption{Ichthyop-DEB Case 2}
-%	\label{Diapositiva2Case2}
-%\end{figure}
-
-%The parameters of the DEB model for Peruvian anchovy (\gls{ringens}) were successfully used to reproduce the larval growth patterns (Fig. \ref{Chap4DEB_out_f1_vsArturoLab}) reported by \citep{RiouOfel2021} assuming a functional response in which food is not a constraint ($f=1$).\\
-
-%\begin{figure}[H]
-%	\includegraphics[width=1.0\textwidth]{figures/Chap4DEB_out_f1_vsArturoLab.png}
-%	\centering
-%	\caption{Comparison of Peruvian anchovy simulated larval growth (lines) and laboratory observations (dots) from \cite{RiouOfel2021}. The bioenergetic model was calibrated using the data points shown in the graph.}
-%	\label{Chap4DEB_out_f1_vsArturoLab}
-%\end{figure}
-
-%\begin{figure}[H]
-%	\includegraphics[width=1.0\textwidth]{figures/Chap4DEBvsData.png}
-%	\centering
-%	\caption{Comparison of Peruvian anchovy simulated larval growth and laboratory observations from \cite{RiouOfel2021} (a) and in situ observations from \cite{MoreClar2011} (b). Thick lines correspond to average size predictions considering ten $f$ values from 0.1 to 1 with 0.1 steps (food limitation factor, see section 2.1.6) at $19$\textdegree $C$ (red), $18$\textdegree $C$ (green) and $15$\textdegree $C$ (blue) in (a) and at $16$\textdegree C in (b). Dotted lines correspond to standard deviation of the simulated larval growth. Colored dots show the corresponding observations. The bioenergetic model was calibrated using the data points shown in the graph. Note that the scales are different in the two panels.}
-%	\label{Chap4DEBvsData}
-%\end{figure}
-
-%In addition, in Fig. \ref{Chap4DEB_out_fMaxMin_vsMoreno2011_larva} we compared the average growth curves resulting from predictions considering ten $f$ values from 0.1 to 1 with 0.1 steps (food limitation factor) versus growth records during their larval stage in individuals reported in \cite{MoreClar2011}, this is because in the natural environment, it is not possible to determine an exact value of the functional response ($f$). It can also be observed that it is possible to reproduce the growth pattern after the larval stage (Fig. \ref{Chap4DEB_out_f1vsMoreno2011_adulto}).\\
-
-%\begin{figure}[H]
-%	\includegraphics[width=1.0\textwidth]{figures/Chap4DEB_out_fMaxMin_vsMoreno2011_larva.png}
-%	\centering
-%	\caption{Comparison of Peruvian anchovy simulated larval growth (blue line) and observations (black dots) from \cite{MoreClar2011}. Dotted lines show the maximum ($f = 1$) and minimum ($f=0.1$)predicted growth obtained with the DEB model.}
-%	\label{Chap4DEB_out_fMaxMin_vsMoreno2011_larva}
-%\end{figure}
-
-%\begin{figure}[H]
-%	\includegraphics[width=1.0\textwidth]{figures/Chap4DEB_out_f1vsMoreno2011_adulto.png}
-%	\centering
-%	\caption{Same as Fig. \ref{Chap4DEB_out_fMaxMin_vsMoreno2011_larva}, but for post larval stage.}
-%	\label{Chap4DEB_out_f1vsMoreno2011_adulto}
-%\end{figure}
-
-%Starvation tests were conducted on larvae of varying sizes (0.5 and $3 cm$) to investigate the impact of food deprivation on larval recruitment in future simulations. In non-fed conditions, an increase in temperature leads to a starvation effect in fewer days. Furthermore, the \textit{\gls{encrasicolus}} is less sensitive to lack of food than the \gls{ringens}.\\
-
-
-%\clearpage
-
-%
-
-%
-%This theory is particularly popular in ecophysiology and population ecology, where it helps scientists understand how organisms allocate their energy and resources to various life processes, such as growth, maintenance, and reproduction. The DEB theory is based on a set of mathematical equations and concepts that describe how an organism acquires, uses, and allocates energy. These equations take into account factors like energy acquisition (feeding), energy storage, and the trade-offs between various life processes inside the individual. Different individuals (species), present differences that are captured by the DEB theory at the level of their parameter values \citep{Meer2006}. In this way, this theory helps us to understand how a species can flourish or decline, how it competes for resources or how it adapts in different environmental conditions.\\
-%
-%The strategy is to start from mechanistic considerations at the individual level incorporating details about the physiology of the species defining parameters that describe how the organism acquires, allocates, and uses energy \citep{KooiSabe1986}. These parameters include assimilation rates, growth rates, reproduction rates, maintenance costs, and more, all of which are typically influenced by factors like temperature, food availability, and age, cementing the basic blocks to model studies on \textit{Engraulis ringens} structured population.\\
-%
-%\textit{E. ringens}, commonly known as the Peruvian anchovy, is a small pelagic fish species found in the southeastern Pacific Ocean along the coasts of South America, particularly in the Humboldt Current system \citep{GutiSwar2007}. Along with the Peruvian anchovy, there is usually an important presence of sardine (\textit{Sardinops sagax}), another small pelagic species, but since the decade of the 2000s, there have been no significant landings off the peruvian coast \citep{CardFran2015}, and the fact that \textit{E. ringens} is usually associated with the coastal zone while sardines occupy more oceanic areas due to different feeding and oxygen conditions \citep{EspiBert2008,BertChai2011}, we can study the interaction of anchovy with their environment without considering a competition with sardines.\\
-%
-%When commercially targeted marine fish feed on phytoplankton and zooplankton, they assimilate and redistribute essential nutrients, influencing the productivity and structure of the ecosystem \citep{LeMeGuie2022}. Also, anchovies help maintain the balance and stability of marine ecosystems due their population dynamics can impact the abundance of other species, influencing ecosystem health and resilience to environmental changes \citep{FennSear2023}. Since Dynamic Energy Budget theory can be used in IBM models, ecosystem models, toxicology models \citep{LavaFilg2021}, a DEB model for \textit{E. ringens} is essential for future ecological studies and for conservation purposes.
-%
-%Below, we list some important concepts in DEB modelling:
-%
-%\begin{itemize}
-%%  \centering
-%  \item Energy Budget: DEB modeling starts by quantifying the energy fluxes into and out of an organism. This includes energy gained through feeding, losses due to metabolism and maintenance, growth, reproduction, and other processes.\\
-%  
-%  \item Allocation and Utilization: The model describes how the acquired energy is allocated and utilized for different biological processes, such as growth, reproduction, and maintenance. It helps to understand how organisms prioritize energy allocation under varying conditions.\\
-%
-%  \item Reserves and Structure: DEB models account for the storage of surplus energy as reserves (e.g., fat, proteins) and the development of structural components (e.g., organs, tissues). The dynamics of these reserves are critical in understanding an organism's life history.\\
-%
-%  \item Maintenance and Maturation: DEB models consider the energy spent on maintaining basic bodily functions (maintenance) and the energy used for growth and development (maturation) at different life stages.\\
-%
-%  \item Environmental Factors: The model incorporates two principal environmental factors like temperature, food availability, and other abiotic factors (not taken into account in this study) to assess their influence on energy acquisition, utilization, and allocation.\\
-%
-%\end{itemize}
-%
-%In addition, we present a list of potential uses of a DEB model:
-%
-%\begin{itemize}
-%%  \centering
-%  \item Growth and Development: DEB models provide insights into the growth patterns and development stages of organisms. They help predict how growth rates vary with environmental conditions and resource availability.\\
-%  
-%  \item Reproduction and Life History Strategies: DEB models enable the study of reproductive strategies, including the timing and allocation of energy to reproduction. This aids in understanding reproductive trade-offs and strategies for optimizing its survival.\\
-%  
-%  \item 	Responses to Environmental Change: DEB models help predict how organisms respond to changes in environmental conditions, such as temperature, nutrient availability, and pollution. This is crucial for assessing the impacts of climate change and other environmental stressors.\\
-%  
-%  \item Optimizing Fisheries and Aquaculture: DEB models aid in optimizing fisheries and aquaculture practices by predicting growth rates, maturation, and reproduction, leading to sustainable management of fish stocks.\\
-%  
-%  \item Toxicology and Ecotoxicology: Although it is not the objective of this study, DEB models can be applied to assess the effects of toxins and pollutants on an organism's energy allocation and life history traits, aiding in understanding toxicological impacts.\\
-%
-%\end{itemize}
-%
-%So, in this chapter, we will start by showing the available data collection, the calibration of a DEB model with growth acceleration during its early life stages (that was not taken into account in the Chapter \ref{Chap3}) and its implementation in the IBM called Ichthyop-DEB model, to explore the interaction of the species with its environment, focusing mainly on its food demand since the effect of temperature has been well documented previously.
-%
-%\section{Methods}\label{Chap4Meth}
-%
-%\subsection{Data collection}\label{Chap4MethDat}
-%
-%A model is composed of mathematical equations that represent the characteristics of a dynamic system. These equations include parameters that allow the comparison of different systems, and these parameters are estimated from empirical data \citep{RaolGiri2004}. Gather empirical data and literature data related to \textit{E. ringens}, includes growth rates, especially in their early stages of life, reproduction rates, feeding rates, body sizes, and any other relevant biological measurements.\\
-%
-%In spite of the application of DEB theory is challenging because the state variables and parameters are abstract quantities that are not directly observable, the parameter estimation method \citep{Lika2011a,Lika2011b} makes use of different data sources.\\
-%
-%However, there are different levels of difficulty in collecting individual or population data for a species. For example, a collection of population data for \textit{E. ringens} is well described by \citep{MarzShin2009}, but data on metabolic rates, feeding rates or vertical behaviour (characteristics that require captive breeding) have been studied more in other similar species and other ecosystems \citep{AldaCota2008,CermUria2003,KramZwei1968,DetwHoud1970,Hunt1971,Hunt1984,SakaKimu1976,Houd1977,MethKram1979,Thei1980,Brow1983}, while laboratory rearing (especially for early life stages) is just beginning for \textit{E. ringens} \citep{RiouOfel2021,OfelMoya2023}, difficulty in rearing, which can be explained by the high migratory behaviour of anchovies in general \citep{OlivSala2001,MoraBaba2010,TanaOhsh2010,PoliHure2015,GuraFach2017,CastNiqu2021}.\\
-%
-%The following is a description of the available and preferably most updated data used for DEB parameters estimation on \textit{E. ringens}.\\
-%
-%\subsection{Parameter estimation}
-%
-%Estimating parameters for a Dynamic Energy Budget (DEB) model involves a process to fit the model to empirical data, allowing it to accurately represent the energy allocation and life history of a specific organism, in this case, \textit{E. ringens}.\\
-%
-%We used a bivariate statistical technique \citep{Lika2011a,Lika2011b} to estimate the values of the model parameters that minimize the difference between model predictions and observed data. Then, we fitted the DEB model to the compiled empirical data, adjusting parameters to best represent the biological processes and energy dynamics of \textit{E. ringens}.\\
-%
-%In order to show the difference between the DEB-standard model (\textit{E. encracicolus}) used in Chapter \ref{Chap3}, a comparative table with the estimated parameters for \textit{E. ringens} is presented below.
-%
-%Table 1: Parameters used for the bioenergetic model describing larval growth. These values were estimated by Pethybridge et al. (2013) for Engraulis encrasicolus and compared with the parameters estimated for E. ringens (current study). The values of $T_L$, $T_H$, $T_AL$, $T_AH$ are detailed for case 1. Values for case 2 are indicated in parenthesis when different from case 1.
+List of bullet points are coming soon . . .
