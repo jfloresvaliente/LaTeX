@@ -17,7 +17,7 @@
 \usepackage{subcaption}
 \usepackage[utf8]{inputenc}
 
-% distancia entre lineas
+% Line spacing
 \renewcommand{\baselinestretch}{1.06}
 
 \frenchspacing
@@ -32,7 +32,7 @@
 	\renewcommand{\headrulewidth}{0pt} % comment to keep rule
 	\fancyfoot{} % comment to put page number at bottom
 }
-% Configurar el ancho del "header" de cada pagina
+% It is necessary to configure the width of the 'header' on each page.
 \setlength{\headheight}{41pt}
 \renewcommand{\chaptermark}[1]{\markboth{\small #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\small \thesection\ #1}{}} 
@@ -47,11 +47,11 @@
 \usepackage{natbib}
 \usepackage{enumitem} 
 
-% Para cambiar el color de las referencias cruzadas y citas bibliograficas
+% To alter the color of cross-references and bibliographic citations.
 \usepackage[colorlinks,urlcolor=green,citecolor=red,linkcolor=blue]{hyperref}
-\usepackage{cleveref} % este paquete debe cargarse despues de "hyperref"
+\usepackage{cleveref} % this package must be loaded after 'hyperref'
 
-% Cambiar el titulo en la figuras Fig. en lugar de Figure
+% Change the title: 'Fig.' instead of 'Figure'
 \usepackage[figurename=Fig.]{caption}
 
 \Crefname{figure}{Figure}{Figures}
@@ -61,47 +61,84 @@
 \crefname{equation}{Eq.}{Eqs.}
 \crefname{table}{Table}{Tables}
 
-% directorio donde se ubican las figuras
+% The directory in which the figures are stored
 \graphicspath{{figures/}} 
 
 \usepackage[font={small,it}]{caption}
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
 
-% Generar ambientes verticales y voltear una figura o tabla
+% Generate vertical environments to rotate a figure or table
 \usepackage{lscape}
 
-% Enumerar lineas de texto
+% Enumerate lines of text
 \usepackage{lineno}
 
-% Establecer los niveles en la lista de contenidos
+% Set the levels in the list of contents
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 
-% Controlar las dimensiones de celdas en tablas
+% Control cell dimensions in tables
 \usepackage{array}
 
-% Poner 2, o mas lineas en una celda
+% Put 2, or more lines in a cell
 \usepackage{makecell}
 
-% Agregar glosario
+% Add glossary
 \usepackage[style=indexgroup, toc,section=chapter]{glossaries}
 \makenoidxglossaries % use TeX to sort
 \loadglsentries{glossaries}
 
-% Incluir la bibliografia en la tabla de contenidos
+% Include 'References' in the table of contents.
 \usepackage[nottoc]{tocbibind}
 
-% ajustar la tabla
+% Adjust the table
 \usepackage{adjustbox}
 
-% agregar notas dentro de la tabla
+% Add notes within the table
 \usepackage{enumitem}
 \usepackage{nicematrix}
 
-% Usar simbolos
+% Using mathematical symbols
 \usepackage{amssymb}
 
-% Poner el titulo de las tablas en la parte superior
+% Put the title of the tables in the upper part of the table
 \usepackage{floatrow}
 \floatsetup[table]{capposition=above}
+
+% Coloring tables (one line yes, one line no)
+\usepackage{colortbl}
+\definecolor{gris}{RGB}{242,242,242}
+\usepackage[table]{xcolor}
+
+% Para agregar texto en formato de código
+\usepackage{listings}
+
+%\definecolor{codegreen}{rbg}{0,0.6,0}
+%\definecolor{codegray}{rbg}{0.5,0..5,0.5}
+%\definecolor{codepurple}{rbg}{0.58,0,0.82}
+%\definecolor{backcolor}{rbg}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    %backgroundcolor=\color{black},
+    %commentstyle=\color{green},
+    %keywordstyle=\color{magenta},
+    %numberstyle=\tiny\color{gray},
+    %stringstyle=\color{purple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=t,
+    keepspaces=true,
+    %numbers=left,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% agregar apendice
+\usepackage{appendix}
+
+% agregar pdf
+\usepackage{pdfpages}

@@ -26,19 +26,19 @@
 %\input{acknowledgements}
 
 %----- Chapter Structure -----%
+\input{Cap1}
+
 \mainmatter
 \linenumbers
 
-\input{Cap1}
 \input{Cap2}
 \input{Cap3}
 \input{Cap4}
-%\input{Cap5}
-%\input{Appendix1}
+\input{Cap5}
 
-\nolinenumbers
 \backmatter
-
+\input{Cap6}
+\nolinenumbers
 %----- Print Bibliography -----%
 \renewcommand\bibname{References}   % Change bibliography title.
 \bibliographystyle{bst/authordate1} % Directory where the references are stored.
@@ -50,6 +50,10 @@
 
 %%----- Print glossary -----%
 \printnoidxglossary
+
+% Add appendix
+\appendix
+\input{Appendix1}
 
 \end{document}
 %%%%%%%%%% END DOCUMENT %%%%%%%%%%

@@ -115,7 +115,7 @@ The $S_{M}$ parameter only accelerates growth from birth to metamorphosis.\\
 
 $\left \{ \dot{p}_\mathrm{Am} \right \}_{S_{M}} = S_{M} \left \{ \dot{p}_\mathrm{Am} \right \}_{T}$\\
 
-$\dot{v}_{S_{M}} = S_{M} \dot{K}_{jT}$\\
+$\dot{v}_{S_{M}} = S_{M} \dot{v}_{T}$\\
 
 \subsubsection{Fluxes ($Jd^{-1}$)}\label{Chap4Fluxex}
 \hfill \\
@@ -652,7 +652,7 @@ Metabolic acceleration at $f = 1$	&
 $AmP$								\\
 \end{tabular}
 \end{adjustbox}
-\caption{Primary parameters (for both species, rates are at reference temperature $T_{1} = 293 K$  [$=20$\textdegree $C$], in order to facilitate comparison). This study employs a parameter optimization algorithm : $AmP$. The degree of freedom (Free column) indicates whether a parameter was estimated in this study (1) or obtained from literature or experimental data (0).}
+\caption{Primary parameters (for both species, rates are at reference temperature $T_{1} = 293 K$  [$=20$\textdegree $C$], in order to facilitate comparison). This study employs a parameter optimization algorithm : $AmP$. The Free column indicates whether a parameter was estimated in this study (1) or obtained from literature or experimental data (0).}
 \label{param_compar}
 \end{table}
 %\end{landscape}
@@ -716,6 +716,21 @@ For the starvation experiments on larvae of two different sizes (0.5 and 3 $cm$)
 	\label{Chap4t_starvation_f0_V2cTcase1}
 \end{figure}
 
+\clearpage
 \section{Discussion}
 
-List of bullet points are coming soon . . .
+The \acrfull{deb} theory has been extended to many species of various clades of the planet's living species \citep{Kooi2009}, and here we have presented the first formal record of a set of parameter estimates emphasizing early life stages specific to \textit{\gls{ringens}}.\\
+
+In contrast to the standard version of the model ($DEB_{std}$), the version that includes the acceleration of growth to metamorphosis ($DEB_{abj}$), which is typical of organisms that have larval stages in their life cycle, was well represented under conditions without any food limitation, even at different temperatures (Fig. \ref{Chap4LarvaDataVSModel}). However, \cite{FlorLett2023} reported that using the standard version of the model, with a set of parameters developed for \gls{encrasicolus} \citep{PethRoos2013}, and averaging larval growth at different food conditions, they obtained a general average growth pattern that conforms to that reported by \cite{RiouOfel2021}. This model was successful in representing temporal and spatial patterns of larval recruitment off the coast of Peru.\\
+
+The $DEB_{abj}$ model was employed to estimate the embryonic characteristics of \gls{ringens}, resulting in a low relative error. The initial energy content ($E0 = 0.9672 J$) was found to be comparable to that observed in other fish models ($E0 = 1 J$) is consistent with that reported by \cite{FlorLett2023}, and the initial volume ($V0 = 0.0002285 cm^3$) is comparable to that reported by \cite{RiouOfel2021}.\\
+
+The biological developmental characteristics of the species include age at hatching ($a_{h}$ = 2.432 $days$), standard length at hatching ($L_{h}$ = 0.2817 cm), age at hatching ($t_b$ = 3.983 days), and standard length at hatching ($L_{b}$ = 0.541 cm). The latter two parameters, which are understood in the context of the $DEB_{abj}$ model, were estimated with a low relative error (Table \ref{zero-variate}), providing confidence in the reliability of the model with respect to its literature counterpart \citep{WareMend1981,RiouOfel2021}.\\
+
+To avoid confusion, we should clarify that metamorphosis in the context of the \acrshort{deb} theory does not refer to a change in the morphology of the individual or to a transition period as described by \cite{MoreClar2011}, but to an energetic threshold ($J$), which is why the values predicted by the model differ significantly from the data found in the literature. We can understand this acceleration process as an exponential growth curve described by the Gompertz function until the metamorphic energy threshold ($E_{H}^j$) is reached, and then it is described by the von Bertalanffy curve. Fig. \ref{Chap4DEBoutVSArturoLabf1V4} shows the comparison of the behavior of both versions of the model, where the growth simulated by both versions behaves very similar until the first 5 $days$ of age, then diverging into an almost linear growth ($DEB_{std}$) and an exponential growth ($DEB_{abj}$), finally converging at 48 $days$ ($t_{j}$, age at metamorphosis) to reach a standard length ($L_{j}$) of 1.218 $cm$ in a constant temperature scenario at 20 \textdegree C. This feature would play a very important role in representing the early development of \textit{\gls{ringens}}, considering that temperature and food availability would modulate the age ($t_{j}$) at which this energy threshold ($E_{H}^j$) is reached, a feature that can only be represented by the accelerated model ($DEB_{abj}$), which would help us to better explore larval survival processes.\\
+
+The age at puberty ($t_{p}$) was estimated to be 264.8 $days$, which differed significantly from the literature \citep{MarzShin2009}, but the total length reached by an individual to reach puberty ($L_p$ = 9.996 $cm$) was almost the same as in the literature, as were the life expectancy ($am$ = 1485 $days$) and the total final length ($L_i$ = 18.5 $cm$) \citep{MarzShin2009}. The final wet weight ($W_wi$ = 85.7 $g$) as well as the maximum reproductive rate ($R_{i}$ = 2145) were overestimated with respect to their literature source \citep{PaloMuck1987,PereBuit2000}, but the ratio total length - total weight (Fig \ref{Chap4LengthVSWeight}, \cite{Mina1968}) and total length - number of oocytes per batch (Fig. \ref{Chap4LengthVSOocytes}, \cite{PereBuit2000}), as well as the relationship time since birth - total length, fit very well with the data obtained from the von Bertalanffy curve (Fig. \ref{Chap4AdultDataVSModel}, \cite{PaloMuck1987}), making this set of parameters a reliable representation of the life cycle of \textit{\gls{ringens}}.\\
+
+Since the standard model ($DEB_{std}$) does not consider energetic thresholds for birth and metamorphosis, in Fig. \ref{Chap4age_transitions2SPcTcase1} we calculate the time in which an individual (simulated by $DEB_{std}$) reaches the standard length at the time of yolk absorption ($L_{b}$) and the standard length at metamorphosis ($L_{j}$), then we compare it with its equivalent simulated by the $DEB{abj}$ model in a temperature range between 14 and 21 \textdegree C. The age at hatching simulated by the $DEB_{abj}$ model was slightly higher than that simulated by $DEB_{std}$ from 14 \textdegree C to 18 \textdegree C, the temperature at which it reaches almost the same value. Then, at 19 \textdegree C, this pattern was reversed, with the $DEB_{abj}$ model showing a lower age at hatching, but only up to 21 \textdegree C, the temperature at which the metabolic rates would be too slow to continue with the normal development of the individual, due to the shape of the temperature correction curve (Case 1), which reaches a maximum at 19 \textdegree C and then begins to slow down the metabolic rates, as described in Chapter \ref{Chap3}. In simulation experiments associated with starvation conditions, we observed that a small larva (0. 5 $cm$) simulated by the $DEB_{abj}$ model would show a better tolerance to this condition, taking more days to die than predicted by a $DEB_{std}$ model, although both models show a tendency for the number of days to starvation to decrease as the temperature increases from 14 to 21 \textdegree C and then become constant even up to 30 \textdegree C, however, at a larger length (3 $cm$) this characteristic would have the opposite behavior, where the $DEB_{abj}$ model would be more sensitive to starvation, probably due to higher maintenance costs that could not be covered by the initial reserve of individuals. This pattern of slowing metabolic rates described above would be consistent with that reported by Aguirre-Velarde (personal communication) on thermal tolerance experiments, in which a decrease in metabolic rates was observed at 21 \textdegree C and above.\\
+
+\clearpage

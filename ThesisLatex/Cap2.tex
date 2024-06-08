@@ -54,7 +54,7 @@ To evaluate the impact of spatial resolution, bathymetry source and coastline be
 
 The model included two types of entities: the environment and the individuals (virtual particles). The environment was represented by stored hydrodynamic simulations from the \acrlong{croco} (\href{https://www.croco-ocean.org/}{CROCO}, \cite{HiltAucl2020,ShchMcwi2005}) providing the forcing state variables: ocean current velocities ($ms^{-1}$), over the \acrshort{nhcs}. Individuals were characterized by the following state variables: age ($d$) and location in 3D (longitude, latitude and depth).\\
 
-Fig. \ref{Chap2SpawningZone} shows the three different \acrshort{croco} configurations with contrasted grid size and bathymetry were used, in order to evaluate the model sensitivity to hydrodynamic resolution (Table \ref{TabSimus}). The first configuration ($D01$) extends from $22$\textdegree $S$ to $5$\textdegree $N$ in latitude and from $96$\textdegree $W$ to $70$\textdegree $W$ in longitude, with a horizontal resolution of $\sim$ 10 $km$ and $32$ vertical levels. The bathymetry comes from the STRM30 dataset \citep{BeckSand2009}, then it was interpolated on the model grid and smoothed in order to reduce errors in the horizontal pressure gradient. The second configuration ($D02$) extends from $20$\textdegree $S$ to $5$\textdegree $S$ with a horizontal resolution of $\sim$ 2 $km$ and $42$ vertical levels. The $D02$ domain is embedded in the $D01$ domain, through an offline nesting procedure (``roms2roms''; \cite{MasoMole2010}). We used two different bathymetries for the $D02$ domain: one interpolated from the $D01$ bathymetry (i.e., similar to the $D01$ bathymetry) and one interpolated directly from the STRM30 dataset. Note that consequently the former is smoother than the latter, so in the following we call them $D02s$ and $D02r$, respectively.\\
+Fig. \ref{Chap2SpawningZone} shows the three different \acrshort{croco} configurations with contrasted grid size and bathymetry were used, in order to evaluate the model sensitivity to hydrodynamic resolution (Table \ref{Chap2TabSimus}). The first configuration ($D01$) extends from $22$\textdegree $S$ to $5$\textdegree $N$ in latitude and from $96$\textdegree $W$ to $70$\textdegree $W$ in longitude, with a horizontal resolution of $\sim$ 10 $km$ and $32$ vertical levels. The bathymetry comes from the STRM30 dataset \citep{BeckSand2009}, then it was interpolated on the model grid and smoothed in order to reduce errors in the horizontal pressure gradient. The second configuration ($D02$) extends from $20$\textdegree $S$ to $5$\textdegree $S$ with a horizontal resolution of $\sim$ 2 $km$ and $42$ vertical levels. The $D02$ domain is embedded in the $D01$ domain, through an offline nesting procedure (``roms2roms''; \cite{MasoMole2010}). We used two different bathymetries for the $D02$ domain: one interpolated from the $D01$ bathymetry (i.e., similar to the $D01$ bathymetry) and one interpolated directly from the STRM30 dataset. Note that consequently the former is smoother than the latter, so in the following we call them $D02s$ and $D02r$, respectively.\\
 
 The three configurations were used to obtain quasi-equilibrium solutions, forced by monthly climatologies (over the period 2008-2015) at their surface and lateral boundaries. They all used the same atmospheric forcing fields. The wind stress was computed from a monthly climatology of the \acrlong{ascat} (\href{https://www.ospo.noaa.gov/Products/atmosphere/ascat/}{ASCAT}, 1/4\textdegree gridded product). Other atmospheric fluxes (shortwave heat fluxes and freshwater fluxes) come from the \acrlong{coads} (\href{https://repository.library.noaa.gov/view/noaa/49337}{COADS}) monthly climatology \citep{DasiYoun1994}. Model \acrfull{sst} was restored to observed climatological monthly \acrshort{sst} derived from the merged multi-sensor OSTIA product \citep{DonlMart2012} following the methodology of \citep{BarnSief1995}. Open boundary conditions for the $D01$ domain were derived from a monthly climatology of the \href{https://www.mercator-ocean.eu/en/ocean-science/glorys/}{GLORYS2V4} reanalysis [1/4\textdegree horizontal resolution; \citep{FerrPare2012}] for temperature, salinity, zonal and meridional current velocity components and sea-level height. Climatological simulations were run for 10 years, the first 4 years being considered as a spin-up. In the present study, the last three years were used to force \gls{ich} (Fig. \ref{Chap2Ichthyop}).\\
 
@@ -65,16 +65,18 @@ The three configurations were used to obtain quasi-equilibrium solutions, forced
 	\label{Chap2SpawningZone}
 \end{figure}
 
-\begin{landscape}
+%\begin{landscape}
 \begin{table}[H]
-\centering
-\begin{tabular}{r|c|c|c}
-\hline
+    \centering
+    \caption{Summary of the simulations conducted for sensitivity analysis, listing all variations between them.}
+    \rowcolors{1}{white}{gris}
+    \begin{tabular}{r|c|c|c}
+    \toprule
 						&
 \textbf{$Sim 1$}		&
 \textbf{$Sim 2$}		&
 \textbf{$Sim 3$}		\\
-\hline
+\midrule
 Configuration domain	&
 	$D01$  		     	&
 	$D02s$ 		     	&
@@ -120,12 +122,11 @@ Coastline behavior								&
 \makecell{beaching,\\bouncing,\\standstill}	&
 \makecell{beaching,\\bouncing,\\standstill}	&
 \makecell{beaching,\\bouncing,\\standstill}	\\
-\hline
-\end{tabular}
-\caption{Summary of the simulations conducted for sensitivity analysis, listing all variations between them.}
-\label{TabSimus}
+    \bottomrule
+    \end{tabular}
+    \label{Chap2TabSimus}
 \end{table}
-\end{landscape}
+%\end{landscape}
 
 \begin{figure}[H]
 	\includegraphics[width=1.0\textwidth]{figures/Chap2Ichthyop.png}
@@ -170,14 +171,14 @@ Spawning area (Fig. \ref{Chap2SpawningZone}) was defined between latitudes 6\tex
 
 From this chapter onwards, each drift simulation will be listed under the name ``\textbf{$sim \#$}'', for example, in the text, saying ``$sim 1$'', will be equivalent to saying ``\textit{simulation 1}''. Details of each simulation will be detailed in a table in its corresponding chapter.\\
 
-Three simulations were performed in order to explore the model sensitivity to different environmental forcing fields (Table \ref{TabSimus}). In order to fit the spatial extent of the 2 $km$ grid, spawned individuals was constrained in the coastal area between 6\textdegree $S$ and 14\textdegree $S$ (Fig. \ref{Chap2SpawningZone}, dotted box) for all three simulations. Larval recruitment was calculated at 30 $days$ (\gls{cri1}).\\
+Three simulations were performed in order to explore the model sensitivity to different environmental forcing fields (Table \ref{Chap2TabSimus}). In order to fit the spatial extent of the 2 $km$ grid, spawned individuals was constrained in the coastal area between 6\textdegree $S$ and 14\textdegree $S$ (Fig. \ref{Chap2SpawningZone}, dotted box) for all three simulations. Larval recruitment was calculated at 30 $days$ (\gls{cri1}).\\
 
 \clearpage
 \section{Results}\label{Chap2Resu}
 
 Simulated retention patterns obtained with the three tested configurations of the hydrodynamic model were very similar and did not show any significant differences on retention patterns related to the use of different spatial resolutions ($Sim 1$, $Sim 2$ and $Sim 3$, Fig. \ref{Chap2Recruitment3bars}). The main differences concerned the $D02s$ configuration ($Sim 2$) that exhibits slightly higher retention values for austral summer months (Fig. \ref{Chap2Recruitment3bars}a) and for the coastal spawning zone (0 - 100 $m$ isobath, Fig. \ref{Chap2Recruitment3bars}d). The latitudinal range between 10\textdegree - 12\textdegree $S$ was the most favorable for larval retention (Fig. \ref{Chap2Recruitment3bars}b) and a direct relationship was observed between spawning depth and larval retention, being lower near the surface and higher in deeper layers (Fig. \ref{Chap2Recruitment3bars}c).\\
 
-An ANOVA (Table \ref{TabAnovaSimus}) was applied to evaluate which of the factors (spawning year, spawning month, spawning depth, spawning bathymetry, spawning latitude, horizontal resolution and coastline behavior) and its interactions had the greatest impact. Spawning  depth explained 28.32 \% of the variance and showed a direct relationship between spawning depth and retention rate, with higher values when the particles were spawned deeper (30 - 45 $m$) and lower values when they were spawned near the surface (0 - 15 $m$, 15 - 30 $m$) (Fig. \ref{Chap2Recruitment3bars}c). Spawning bathymetry explained 12.27 \% of the variance, with the highest retention rates in the area closest to the coast (0 - 100 $m$) than those spawned offshore (100 - 500 $m$, 500 - 2000 $m$) (Fig. \ref{Chap2Recruitment3bars}d). Spawning month explained only 4.95 \% of the variance and showed seasonal variability with the summer months having the highest retention rate (Fig. \ref{Chap2Recruitment3bars}a). Spawning latitude explained 4.47 \% of the variance and the zone between 10 - 12\textdegree $S$ was the major latitudinal retention zone (Fig. \ref{Chap2Recruitment3bars}b). Finally, with an almost negligible percentage of variance explanation, are spatial resolution (0.1 \%), coastline behavior (0.04 \%) and spawning year (0.01 \%).\\
+An ANOVA (Table \ref{Chap2TabAnovaSimus}) was applied to evaluate which of the factors (spawning year, spawning month, spawning depth, spawning bathymetry, spawning latitude, horizontal resolution and coastline behavior) and its interactions had the greatest impact. Spawning  depth explained 28.32 \% of the variance and showed a direct relationship between spawning depth and retention rate, with higher values when the particles were spawned deeper (30 - 45 $m$) and lower values when they were spawned near the surface (0 - 15 $m$, 15 - 30 $m$) (Fig. \ref{Chap2Recruitment3bars}c). Spawning bathymetry explained 12.27 \% of the variance, with the highest retention rates in the area closest to the coast (0 - 100 $m$) than those spawned offshore (100 - 500 $m$, 500 - 2000 $m$) (Fig. \ref{Chap2Recruitment3bars}d). Spawning month explained only 4.95 \% of the variance and showed seasonal variability with the summer months having the highest retention rate (Fig. \ref{Chap2Recruitment3bars}a). Spawning latitude explained 4.47 \% of the variance and the zone between 10 - 12\textdegree $S$ was the major latitudinal retention zone (Fig. \ref{Chap2Recruitment3bars}b). Finally, with an almost negligible percentage of variance explanation, are spatial resolution (0.1 \%), coastline behavior (0.04 \%) and spawning year (0.01 \%).\\
 
 Spawning depth had the most significant effect in all three simulations. It interacted with the spawning month and explained 10.15 \% of the variance of larval retention, affecting the seasonal pattern (Fig. \ref{Chap2Recruitment3sim3depth}). Particles spawned near the surface (0 - 15 $m$, Fig. \ref{Chap2Recruitment3sim3depth} a, d, g) showed a seasonal pattern favoring retention in the winter months, while this pattern reverses as spawning depth increases (15 - 30 $m$, Fig. \ref{Chap2Recruitment3sim3depth} b, e, h; 30 - 45 $m$, c, f, i).\\
 
@@ -186,19 +187,20 @@ Fig. \ref{Chap2SpatialVariation} showed that retention rates between 10 - 12 \te
 \begin{figure}[H]
 	\includegraphics[width=1.0\textwidth]{figures/Chap2Recruitment3bars.png}
 	\centering
-	\caption{Percentage of recruited larvae of Peruvian anchovy using an age-criterion (\gls{cri1}) obtained for different (a) spawning months, (b) spawning latitudes, (c) spawning depths, and (d) isobaths delimiting releasing areas horizontally, for three simulations using forcing fields at different spatial resolution ($Sim 1$ in black, $Sim 2$ in dark grey, $Sim 3$ in light gray; see Table \ref{TabSimus} for details on simulations characteristics). Blue arrows represent confidence interval (95 \%).}
+	\caption{Percentage of recruited larvae of Peruvian anchovy using an age-criterion (\gls{cri1}) obtained for different (a) spawning months, (b) spawning latitudes, (c) spawning depths, and (d) isobaths delimiting releasing areas horizontally, for three simulations using forcing fields at different spatial resolution ($Sim 1$ in black, $Sim 2$ in dark grey, $Sim 3$ in light gray; see Table \ref{Chap2TabSimus} for details on simulations characteristics). Blue arrows represent confidence interval (95 \%).}
 	\label{Chap2Recruitment3bars}
 \end{figure}
 
 A sensitivity analysis to spatial resolution and coastline behavior was applied to the retention rates off Peru using \gls{ich} model, a powerfull Lagrangian tool \citep{LettVerl2008}. This tool allowed us to track virtual particles in a 3D environment and to know the location of each particle at each time step.\\
 
-%\begin{landscape}
 \begin{table}[H]
-\centering
-\begin{adjustbox}{width=0.9\textwidth}
-\small
-\begin{tabular}{c|r|r|r|r|r|r}
-\hline
+    \centering
+    \caption{ANOVA of retention rates for $sim 1$ ($D01$), $sim 2$ ($D02s$) and $sim 3$ ($D02r$) combined.}
+    \rowcolors{1}{white}{gris}
+    \begin{adjustbox}{width=0.9\textwidth}
+    \small
+    \begin{tabular}{c|r|r|r|r|r|r}
+\toprule
 								&
 \textbf{Df}                   	&
 \textbf{Sum Sq}               	&
@@ -206,7 +208,7 @@ A sensitivity analysis to spatial resolution and coastline behavior was applied 
 \textbf{F-value}    		   	&
 \textbf{Pr (\textgreater{F})}	&
 $\mathbf{\% Exp}$				\\
-\hline
+\midrule
 Year		& 
 2			& 
 2251.49		& 
@@ -410,13 +412,11 @@ Residuals	&
 			&
 			&
 22.21124	\\
-\hline
-\end{tabular}
-\end{adjustbox}
-\caption{ANOVA of retention rates for $sim 1$ ($D01$), $sim 2$ ($D02s$) and $sim 3$ ($D02r$) combined.}
-\label{TabAnovaSimus}
+    \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \label{Chap2TabAnovaSimus}
 \end{table}
-%\end{landscape}
 
 The fact that there was no significant difference between $sim 1$ ($D01$), $sim 2$ ($D02s$) and $sim 3$ ($D02r$) strengthen the conclusions found by \citep{BrocLett2008} who used a spatial resolution forcing only slightly greater than 10 $km$, despite their study had a wider latitudinal range (2\textdegree - 20\textdegree $S$) than the one used in this chapter (6\textdegree - 14\textdegree $S$). \cite{BrocLett2008} also found that spawning depth is the most important factor (22.7 \% of explained variance) although in a smaller proportion than in the present chapter (28.32 \%). However, \cite{BrocLett2008} found that the next most important factors were spawning latitude (7.2 \%) and then spawning bathymetry (3.9 \%), in contrast to the present chapter in which spawning latitude (4.47 \%) was less important than spawning bathymetry (12.27 \%). Concerning the spawning bathymetry, finding a higher value of percentage of variance explanation in this chapter compared to \cite{BrocLett2008}, could be due to the topographic sources \citep{SmitSand1997} used by them and the one used in the present chapter \citep{BeckSand2009} to represent the bathymetry, which could provide a better description of the seafloor and affect circulation and retention structures also affecting retention rates as \cite{RojaLand2014} reported. The remaining interactions among factors have a negligible effect, explaining less than 1 \% of the variance in larval retention.\\
 

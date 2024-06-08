@@ -26,7 +26,7 @@ Despite these previous works, the question of the relative contribution of the t
 \clearpage
 \section{Methods}\label{Chap3Meth}
 The methodology of this chapter is similar to that applied in Chapter \ref{Chap2}, but will include the description and implementation of a \acrshort{deb} growth model and only $D01$ will be used as forcing, since the spatial resolution did not show significant effects when studying larval
-retention in Chapter \ref{Chap2}, in addition we extended the spawning zone domain from 6\textdegree -14\textdegree $S$ to 2\textdegree -20\textdegree $S$ and the mesozooplankton field from CROCO-PISCES model was used as input for the growth model. Simulations 4 to 8 listed in Table \ref{TabSimusChap3} were performed with climatological forcings, and the same \gls{ich-deb} (Fig. \ref{Chap3Ichthyop-DEB}) configuration was used to run 2 extra simulations (9-10) with interannual forcing from 1980 to 2000 to evaluate the effect of El Ni\~{n}o, for Case 1 and Case 2 curve of temperature correction.\\
+retention in Chapter \ref{Chap2}, in addition we extended the spawning zone domain from 6\textdegree -14\textdegree $S$ to 2\textdegree -20\textdegree $S$ and the mesozooplankton field from CROCO-PISCES model was used as input for the growth model. Simulations 4 to 8 listed in Table \ref{Chap3TabSimus} were performed with climatological forcings, and the same \gls{ich-deb} (Fig. \ref{Chap3Ichthyop-DEB}) configuration was used to run 2 extra simulations (9-10) with interannual forcing from 1980 to 2000 to evaluate the effect of El Ni\~{n}o, for Case 1 and Case 2 curve of temperature correction.\\
 
 \begin{figure}[ht]
 	\includegraphics[width=1.0\textwidth]{figures/Chap3Ichthyop-DEB.png}
@@ -71,7 +71,7 @@ The initial values of the bioenergetic variables for each individual were set as
 
 \item Growth: The \acrshort{deb} theory \citep{Kooi2009} was used to simulate the growth of larvae. It describes the acquisition and utilization of energy for metabolic processes during the complete life cycle of an organism depending on temperature ($T$) and food conditions ($f$). Here, this model was used to simulate larval growth through the description of energy reserve and body structure complexity evolution; maturation and reproduction processes were not considered. Energy assimilated from food in the environment is allocated partly to reserve for somatic maintenance ($E$), and the excess energy is used to increase the structure ($V$), i.e., physical length (see eqn. \ref{L_W}). The following system of ordinary differential equations describe the dynamics of $E$ (eqn. \ref{dEdt}) and $V$ (eqn. \ref{dVdt}).\\
 
-Each parameter may be identified from specific observations for any species. In the absence of observations for the Peruvian anchovy (\textit{\gls{ringens}}), we used here parameters estimated for the European anchovy (\textit{\gls{encrasicolus}}, \cite{PethRoos2013}	, Table \ref{TabDEBparEncra}), a taxonomically close species that is also distributed in upwelling zones. $\left \{ \dot{p}_\mathrm{Am} \right \}$ is the surface-area-specific maximum assimilation rate, $\left [ \dot{p}_{M} \right ]$ is the specific volume-linked somatic maintenance rate, $\kappa$ is the fraction of mobilized reserve allocated to soma, ${\left [ E_{G} \right ]}$ is the volume-specific costs of structure and $\dot{p}_{C}$ (eqn. \ref{pC}) is a compound parameter corresponding to the mobilization of energy for maintenance,\\
+Each parameter may be identified from specific observations for any species. In the absence of observations for the Peruvian anchovy (\textit{\gls{ringens}}), we used here parameters estimated for the European anchovy (\textit{\gls{encrasicolus}}, \cite{PethRoos2013}	, Table \ref{Chap3TabDEBparEncra}), a taxonomically close species that is also distributed in upwelling zones. $\left \{ \dot{p}_\mathrm{Am} \right \}$ is the surface-area-specific maximum assimilation rate, $\left [ \dot{p}_{M} \right ]$ is the specific volume-linked somatic maintenance rate, $\kappa$ is the fraction of mobilized reserve allocated to soma, ${\left [ E_{G} \right ]}$ is the volume-specific costs of structure and $\dot{p}_{C}$ (eqn. \ref{pC}) is a compound parameter corresponding to the mobilization of energy for maintenance,\\
 
 \begin{equation}
 	\dot{p}_{C} = \frac
@@ -133,12 +133,14 @@ an average size of 20 $mm$ at 30 $days$ \citep{CastHern2000, MoreClar2011, RiouO
 	\label{Chap3MortalityCurve}
 \end{figure}
 
+
 \begin{landscape}
 \begin{table}[H]
-\centering
-\begin{adjustbox}{width=1.0\textwidth}
-\small
-\begin{NiceTabular}{c|c|c|c|c|c|c|c}
+    \centering
+    \caption{Summary of simulations performed to study recruitment predictions sensitivity. This table list all parameters that differ between simulations.}
+    \begin{adjustbox}{width=1.0\textwidth}
+    \small
+    \begin{NiceTabular}{c|c|c|c|c|c|c|c}
 \hline
                      &
     \textbf{$Sim 4$} &
@@ -246,27 +248,30 @@ Temporal scale  &
 	Interannual &
 	Interannual \\
 \hline
-\end{NiceTabular}
-\end{adjustbox}
-\caption{Summary of simulations performed to study recruitment predictions sensitivity. This table list all parameters that differ between simulations.}
-\label{TabSimusChap3}
+    \end{NiceTabular}
+    \end{adjustbox}
+    \label{Chap3TabSimus}
 \end{table}
 \end{landscape}
 
+
+
 %\begin{landscape}
 \begin{table}[H]
-\centering
-\begin{adjustbox}{width=1.0\textwidth}
-\begin{tabular}{l|l|l|l}
-\hline
+    \centering
+    \caption{Parameters used for the bioenergetic model describing larval growth. These values were estimated by \cite{PethRoos2013} for \textit{\gls{encrasicolus}}, except half saturation constant ($K$), estimated for the current configuration and fixed at 1.6 $\mu mol CL^{-1}$. Comparison with data showed that these parameters allowed to reproduce \textit{\gls{ringens}} larval growth. The values of $T_{L}$, $T_{H}$, $T_{AL}$, $T_{AH}$ are detailed for Case 1 and Case 2 respectively (see Table \ref{TabSimusChap3}). Although these parameters were originally calibrated with a reference temperature of 16\textdegree $C$, in order to standardize the comparison with other species, we expressed them at 20\textdegree $C$.}
+    \rowcolors{1}{white}{gris}
+    \begin{adjustbox}{width=1.0\textwidth}
+    \begin{tabular}{l|l|l|l}
+\toprule
 \multicolumn{4}{l}
 	{Primary parameters (rates are at reference temperature $T_{1} = 293 K$  ($=20$\textdegree $C$)} \\
-\hline
+\midrule
 Symbol		& 
 Value		& 
 Unit		& 
 Definition	\\
-\hline
+\midrule
 $L_{h}$			& 
 0.28			& 
 $cm$			& 
@@ -324,14 +329,15 @@ $\kappa$																				&
 - 																						& 
 \makecell[l]
 	{Fraction of mobilized reserve allocated to \\ growth and somatic maintenance}	\\
-\hline
+\midrule
 \multicolumn{4}{l}
 	{Auxiliary and Compounds parameters}   \\
-\hline
+\midrule
 Symbol		& 
 Value		& 
 Unit		& 
 Definition	\\
+\midrule
 $\delta_{M}$		& 
 0.152				& 
 -					& 
@@ -340,20 +346,19 @@ $\left \{ \dot{p}_\mathrm{Am} \right \}$								&
 $\kappa_{\mathrm{x}} $ $\left \{ \dot{p}_\mathrm{Xm} \right \}=366$	&
 $J.cm^{-2}.d^{-1}$														& 
 Maximum surface-area-specific assimilation rate						\\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Parameters used for the bioenergetic model describing larval growth. These values were estimated by \cite{PethRoos2013} for \textit{\gls{encrasicolus}}, except half saturation constant ($K$), estimated for the current configuration and fixed at 1.6 $\mu mol CL^{-1}$. Comparison with data showed that these parameters allowed to reproduce \textit{\gls{ringens}} larval growth. The values of $T_{L}$, $T_{H}$, $T_{AL}$, $T_{AH}$ are detailed for Case 1 and Case 2 respectively (see Table \ref{TabSimusChap3}). Although these parameters were originally calibrated with a reference temperature of 16\textdegree $C$, in order to standardize the comparison with other species, we expressed them at 20\textdegree $C$.}
-\label{TabDEBparEncra}
+\label{Chap3TabDEBparEncra}
 \end{table}
 %\end{landscape}
 
 \subsection{Simulations and sensitivity analysis}
 
-Table \ref{TabSimusChap3} shows seven simulations named from $Sim4$ to $Sim10$ performed in order
+Table \ref{Chap3TabSimus} shows seven simulations named from $Sim4$ to $Sim10$ performed in order
 to explore the model sensitivity to different environmental forcing fields and larval growth
 parameters using the $D01$ grid and the larval size threshold (20 $mm$) as a criterion for
-recruitment (size-criterion). The \acrshort{deb} parameters values are given in Table \ref{TabDEBparEncra}, corresponding to \textit{\gls{encrasicolus}} \citep{PethRoos2013} but fitting \textit{\gls{ringens}} larval growth well. In order to disentangle the effects of food and temperature on growth, and ultimately on recruitment, simulations were repeated using a half saturation parameter either null, i.e., $f = 1$ (no food limitation) or calculated such that $f = 0.5$ for the average meso-zooplankton concentration over the continental shelf off Peru with a half saturation constant of $K = 1.6$. To contrast the effect of temperature on growth, we used two different shapes for the curve of the energy fluxes temperature correction ($C_{T}$; Fig. \ref{Chap3CT_curves}). In both cases, $C_{T}$ dropped to very low values for temperature higher than $25$\textdegree $C$ but in the first case the maximum value of $C_{T}$ was at $19$\textdegree $C$ and then it dropped slowly (hereafter referred to as ``Case 1'') whereas in the second case the maximum was at 23 \textdegree C and then it dropped quickly (hereafter referred to as ``Case 2''). These temperature thresholds were chosen to fit \textit{\gls{ringens}} distribution in Peru \citep{CastPena2022}. Two additional simulations were conducted under the same configuration as cases 1 and 2, with an interannual forcing. The objective was to explore recruitment on a different time scale than the climatological one. All simulations lasted 90 days, a value found from preliminary simulations as long enough for the slowest growing individuals to reach the recruitment size. Larval retention at 30 days (age criterion, $Sim 4$) was also compared with the size-criterion in all four simulations ($Sim 5$, $Sim 6$, $Sim 7$ and $Sim 8$). In order to quantify the variation of results between simulations with ($Sim 5$, $Sim 6$) and without ($Sim 7$, $Sim 8$) food limitation, we calculated the percentage of variation, e.g. ($\frac{Sim 7-Sim 5}{Sim 5*100}$)
+recruitment (size-criterion). The \acrshort{deb} parameters values are given in Table \ref{Chap3TabDEBparEncra}, corresponding to \textit{\gls{encrasicolus}} \citep{PethRoos2013} but fitting \textit{\gls{ringens}} larval growth well. In order to disentangle the effects of food and temperature on growth, and ultimately on recruitment, simulations were repeated using a half saturation parameter either null, i.e., $f = 1$ (no food limitation) or calculated such that $f = 0.5$ for the average meso-zooplankton concentration over the continental shelf off Peru with a half saturation constant of $K = 1.6$. To contrast the effect of temperature on growth, we used two different shapes for the curve of the energy fluxes temperature correction ($C_{T}$; Fig. \ref{Chap3CT_curves}). In both cases, $C_{T}$ dropped to very low values for temperature higher than $25$\textdegree $C$ but in the first case the maximum value of $C_{T}$ was at $19$\textdegree $C$ and then it dropped slowly (hereafter referred to as ``Case 1'') whereas in the second case the maximum was at 23 \textdegree C and then it dropped quickly (hereafter referred to as ``Case 2''). These temperature thresholds were chosen to fit \textit{\gls{ringens}} distribution in Peru \citep{CastPena2022}. Two additional simulations were conducted under the same configuration as cases 1 and 2, with an interannual forcing. The objective was to explore recruitment on a different time scale than the climatological one. All simulations lasted 90 days, a value found from preliminary simulations as long enough for the slowest growing individuals to reach the recruitment size. Larval retention at 30 days (age criterion, $Sim 4$) was also compared with the size-criterion in all four simulations ($Sim 5$, $Sim 6$, $Sim 7$ and $Sim 8$). In order to quantify the variation of results between simulations with ($Sim 5$, $Sim 6$) and without ($Sim 7$, $Sim 8$) food limitation, we calculated the percentage of variation, e.g. ($\frac{Sim 7-Sim 5}{Sim 5*100}$)
 
 \begin{figure}[ht]
 	\includegraphics[width=1.0\textwidth]{figures/Chap3CT_curves.png}
@@ -386,13 +391,16 @@ $X$ Food density averaged Mesozooplankton field ($\left[ \mu mol CL^{-1} \right]
 
 The age of the individual is set at zero on the day of spawning.\\
 
-\begin{tabular}{|c|c|c|c|}
-\hline 
+\begin{table}
+\centering
+\rowcolors{1}{white}{gris}
+\begin{tabular}{c|c|c|c}
+\toprule
 Symbol		& 
 Value		& 
 Units		& 
 Definition	\\ 
-\hline 
+\midrule
 $E$				& 
 $0.99$			& 
 $J$				& 
@@ -401,29 +409,31 @@ $V$     			&
 $0.000001$			& 
 $mm^3$				& 
 Initial Structure	\\
-\hline 
+\bottomrule
 \end{tabular} 
+\end{table}
 
 \subsubsection{Primary parameters}\label{Chap3PriPar}
 
 \begin{table}[H]
 \centering
+\rowcolors{1}{white}{gris}
 \begin{adjustbox}{width=1.2\textwidth}
 \begin{tabular}{l|l|l|l}
-\hline
+\toprule
 \multicolumn{4}{l}{
 	Primary parameters (rates are at reference temperature $T_{1} = 293 K$  ($=20$\textdegree $C$)} \\
-\hline
+\midrule
 Symbol		& 
 Value		& 
 Unit		&
 Definition	\\
-\hline
-$L_{h}$			& 
+\midrule
+$Lw_{h}$		& 
 0.28			& 
 $cm$			& 
 Hatch length	\\
-$L_{b}$									& 
+$Lw_{b}$									& 
 0.35									& 
 $cm$									& 
 Yolk-sac to feeding larva threshold		\\
@@ -475,7 +485,7 @@ $\kappa$																	&
 0.7																			& 
 -																			& 
 Fraction of mobilized reserve allocated to growth and somatic maintenance	\\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
@@ -486,14 +496,15 @@ Fraction of mobilized reserve allocated to growth and somatic maintenance	\\
 \centering
 \begin{adjustbox}{width=1.2\textwidth}
 \begin{tabular}{l|l|l|l}
-\hline
+\toprule
 \multicolumn{4}{l}
 	{Auxiliary and Compounds parameters}   \\
-\hline
+\midrule
 Symbol		& 
 Value		& 
 Unit		& 
 Definition	\\
+\midrule
 $\delta_{M}$		& 
 0.152				& 
 -					& 
@@ -502,7 +513,7 @@ $\left \{ \dot{p}_\mathrm{Am} \right \}$								&
 $\kappa_{\mathrm{x}} $ $\left \{ \dot{p}_\mathrm{Xm} \right \}=366$	& 
 $J.cm^{-2}.d^{-1}$														& 
 Maximum surface-area-specific assimilation rate						\\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
@@ -510,7 +521,7 @@ Maximum surface-area-specific assimilation rate						\\
 \subsubsection{Scaled functional response}\label{Chap3resp_f}
 \hfill \\
 
-$V_{b} = (\delta_{M}L_{b})^3$ \hfill Structural volume at first-feeding in $cm^3$.\\
+$V_{b} = (\delta_{M}Lw_{b})^3$ \hfill Structural volume at first-feeding in $cm^3$.\\
 
 \textbf{if} $(V < V_{b})$ \\
 
@@ -576,7 +587,6 @@ $\frac{dV}{dt} = \frac{\dot{p}_{G}}{\left[ E_{G} \right]}$ \hfill Structure dyna
 
 \subsubsection{Integration}\label{Chap3Integ}
 \hfill \\
-
 $E\left ( t + \Delta t \right ) = E\left ( t \right ) + \frac{dE}{dt}\Delta t$ \\
 
 $V\left ( t + \Delta t \right ) = V\left ( t \right ) + \frac{dV}{dt}\Delta t$ \\
@@ -585,7 +595,6 @@ With $\Delta t = 0.083 d \left (=2hours\right )$
 
 \subsubsection{Observable variables}\label{Chap3ObsVar}
 \hfill \\
-
 $L_{w} = \frac{V^{1/3}}{\delta_{M}}$ \hfill Physical length ($cm$).\\
 
 where $L_{w}$ is the standard length $SL$ ($cm$), $V$ the structural volume ($cm^3$) and $\delta_{M}$ a shape coefficient.\\
@@ -626,15 +635,17 @@ Globally, in $Sim 4$ we obtained similar retention patterns as \cite{BrocLett200
 	\label{Chap3BrocVSFloreHovmuller}
 \end{figure}
 
-The analysis of variance (ANOVA, Table \ref{ANOVAsim5}) applied to recruitment rates for Case 1 ($Sim 5$) indicates that spawning depth had the greatest effect on recruitment rates (28.35 \%), followed by latitude (14.26 \%). The other factors (spawning bathymetry, spawning month, and spawning year) showed less than 3 \% of the variance in recruitment rates. However, the combined effect of spawning month and spawning latitude explained 11.26 \% of the variance, followed by spawning month combined with spawning depth (9.20 \%). The remaining combinations did not exceed 4 \% percent explanation.\\
+The analysis of variance (ANOVA, Table \ref{Chap3ANOVAsim5}) applied to recruitment rates for Case 1 ($Sim 5$) indicates that spawning depth had the greatest effect on recruitment rates (28.35 \%), followed by latitude (14.26 \%). The other factors (spawning bathymetry, spawning month, and spawning year) showed less than 3 \% of the variance in recruitment rates. However, the combined effect of spawning month and spawning latitude explained 11.26 \% of the variance, followed by spawning month combined with spawning depth (9.20 \%). The remaining combinations did not exceed 4 \% percent explanation.\\
 
 %\begin{landscape}
 \begin{table}[H]
 \centering
+\caption{ANOVA of recruitment rates for $Sim 5$ (Case 1).}
+\rowcolors{1}{white}{gris}
 \begin{adjustbox}{width=0.9\textwidth}
 \small
 \begin{tabular}{c|r|r|r|r|r|r}
-\hline
+\toprule
                                   &
 	\textbf{Df}                   &
 	\textbf{Sum Sq}               &
@@ -642,7 +653,7 @@ The analysis of variance (ANOVA, Table \ref{ANOVAsim5}) applied to recruitment r
 	\textbf{F-value}    		   &
 	\textbf{Pr (\textgreater{F})} &
 	$\mathbf{\% Exp}$      \\
-\hline
+\midrule
 Year                  & 2    & 594.61    & 297.31    & 3.71    & 0.02                & 0.02  \\
 Month                 & 11   & 46972.03  & 4270.18   & 53.28   & 0.00                & 1.82  \\
 Depth                 & 2    & 729892.48 & 364946.24 & 4553.68 & 0.00                & 28.35 \\
@@ -659,25 +670,26 @@ Depth x Bathymetry    & 4    & 3913.28   & 978.32    & 12.21   & 0.00           
 Depth x Latitude      & 16   & 78663.56  & 4916.47   & 61.35   & 0.00                & 3.06  \\
 Bathymetry x Latitude & 12   & 108870.81 & 9072.57   & 113.20  & 0.00                & 4.23  \\
 Residuals             & 7216 & 578313.56 & 80.14     &         &                     & 22.46 \\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{ANOVA of recruitment rates for $Sim 5$ (Case 1).}
-\label{ANOVAsim5}
+\label{Chap3ANOVAsim5}
 \end{table}
 %\end{landscape}
 
-In Case 2 ($Sim 6$), the results of the ANOVA (Table \ref{ANOVAsim6}) indicated that spawning depth had the greatest effect on recruitment rates (20.71 \%), followed by latitude (13.19 \%) and month of spawning (9.48 \%). The remaining factors (spawning bathymetry and spawning year) collectively accounted for less than 5 \% of the variance. The combined effect of spawning month and latitude explained 8.77 \% of the variance, while the combined effect of spawning month and depth explained a value similar to the previous one (8.04 \%). Another noteworthy combination was that of bathymetry and spawning latitude (6.58 \%). The remaining combinations did not demonstrate particularly noteworthy values.\\
+In Case 2 ($Sim 6$), the results of the ANOVA (Table \ref{Chap3ANOVAsim6}) indicated that spawning depth had the greatest effect on recruitment rates (20.71 \%), followed by latitude (13.19 \%) and month of spawning (9.48 \%). The remaining factors (spawning bathymetry and spawning year) collectively accounted for less than 5 \% of the variance. The combined effect of spawning month and latitude explained 8.77 \% of the variance, while the combined effect of spawning month and depth explained a value similar to the previous one (8.04 \%). Another noteworthy combination was that of bathymetry and spawning latitude (6.58 \%). The remaining combinations did not demonstrate particularly noteworthy values.\\
 
 When we included larval growth ($Sim 5$ and $Sim 6$) and changed the criterion used for retention from age ($Sim 4$, 30 days, grey bars) to size ($Sim 5$ and $Sim 6$; $>$ 2 $cm$, black line) we obtained nearly identical results, except when mortality ($Sim 5$ and $Sim 6$; red line) was further included then small differences occurred in simulated recruitment patterns (Fig. \ref{Chap3Case1CriterionCompar} and Fig. \ref{Chap3Case2CriterionCompar}, respectively). In Case 1 ($Sim 5$), when the bio-energetic fluxes decayed smoothly at high temperature, the seasonal pattern remained similar using recruitment criteria 1,2 and 3 favoring summer months (Fig. \ref{Chap3Case1CriterionCompar}a). Latitudinal range between 6\textdegree - 14\textdegree S showed the highest recruitment value using recruitment criteria 1,2 but using criterion 3 only the zone between 6\textdegree - 8\textdegree $S$ was the most important (Fig. \ref{Chap3Case1CriterionCompar}b).\\
 
 %\begin{landscape}
 \begin{table}[H]
 \centering
+\caption{ANOVA of recruitment rates for $Sim 6$ (Case 2).}
+\rowcolors{1}{white}{gris}
 \begin{adjustbox}{width=0.9\textwidth}
 \small
 \begin{tabular}{c|r|r|r|r|r|r}
-\hline
+\toprule
                                   &
 	\textbf{Df}                   &
 	\textbf{Sum Sq}               &
@@ -685,7 +697,7 @@ When we included larval growth ($Sim 5$ and $Sim 6$) and changed the criterion u
 	\textbf{F-value}    		   &
 	\textbf{Pr (\textgreater{F})} &
 	$\mathbf{\% Exp}$      \\
-\hline
+\midrule
 Year                  & 2    & 645.96    & 322.98    & 3.09    & 0.05                & 0.02  \\
 Month                 & 11   & 322491.73 & 29317.43  & 280.91  & 0.00                & 9.48  \\
 Depth                 & 2    & 704668.20 & 352334.10 & 3375.96 & 0.00                & 20.71 \\
@@ -702,11 +714,10 @@ Depth x Bathymetry    & 4    & 4990.27   & 1247.57   & 11.95   & 0.00           
 Depth x Latitude      & 16   & 153670.06 & 9604.38   & 92.03   & 0.00                & 4.52  \\
 Bathymetry x Latitude & 12   & 223998.82 & 18666.57  & 178.86  & 0.00                & 6.58  \\
 Residuals             & 7216 & 753101.16 & 104.37    &         &                     & 22.13 \\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{ANOVA of recruitment rates for $Sim 6$ (Case 2).}
-\label{ANOVAsim6}
+\label{Chap3ANOVAsim6}
 \end{table}
 %\end{landscape}
 
@@ -801,7 +812,7 @@ Figure \ref{Chap3CT_Depth_f_Inter} illustrates the impact of temperature and foo
 
 Fig. \ref{Chap3RecruitCase1Case2Inter} shows the difference between recruitment rates for Case 1 ($Sim 9$) and Case 2 ($Sim 10$). Both simulations show a decrease in recruitment rates during extreme events, however, Case 1 is more evident. Case 2 showed a favorable effect in the previous year to the extreme event, but then a decline in recruitment rates especially at the beginning of year 1998.\\
 
-Analyses of variance (ANOVA) for $Sim 9$ (Case 1, Table \ref{ANOVAsim9}) and $Sim 10$ (Case 2, Table \ref{ANOVAsim10}) yielded comparable results. Spawning year accounted for 4.07 \% and 3.78 \%, respectively, while spawning month exhibited a relatively modest effect in Case 1 (0.39 \%) but a more pronounced one in Case 2 (3.55 \%). Spawning depth exhibited comparable and not dissimilar percentages of variance explanation (23.25 \% and 18.64 \%, respectively). Spawning bathymetry showed values of 4.70 \% and 7.56 \%, indicating a difference that was not as pronounced as that observed for spawning month. Finally, spawning latitude exhibited no significant difference between Case 1 and Case 2 (4.17 \% and 4.35 \%, respectively). The combinations of factors did not yield values that could be considered significant for differentiating Case 1 and Case 2 at the level of interannual simulations.\\
+Analyses of variance (ANOVA) for $Sim 9$ (Case 1, Table \ref{Chap3ANOVAsim9}) and $Sim 10$ (Case 2, Table \ref{Chap3ANOVAsim10}) yielded comparable results. Spawning year accounted for 4.07 \% and 3.78 \%, respectively, while spawning month exhibited a relatively modest effect in Case 1 (0.39 \%) but a more pronounced one in Case 2 (3.55 \%). Spawning depth exhibited comparable and not dissimilar percentages of variance explanation (23.25 \% and 18.64 \%, respectively). Spawning bathymetry showed values of 4.70 \% and 7.56 \%, indicating a difference that was not as pronounced as that observed for spawning month. Finally, spawning latitude exhibited no significant difference between Case 1 and Case 2 (4.17 \% and 4.35 \%, respectively). The combinations of factors did not yield values that could be considered significant for differentiating Case 1 and Case 2 at the level of interannual simulations.\\
 
 Given the importance of spawning depth for both simulations, it is necessary to consider the isolated effect of this factor. (Fig. \ref{Chap3RecruitCase1Case2InterDepths}) showed a high negative effect of extreme events on the three spawning depths in Case 1 ($Sim 9$, Fig. \ref{Chap3RecruitCase1Case2InterDepths}, left panels). This is less evident in Case 2 (($Sim 10$, Fig. \ref{Chap3RecruitCase1Case2InterDepths}, right panels)), where even in the shallowest depth (0-15 m), a favorability was observed before the onset of the extreme event. In the middle depth zone (15- 30 m) a negative effect of extreme events was observed, but then in the deeper zone (30 - 45 m) this effect was difficult to notice.
 
@@ -822,10 +833,12 @@ Given the importance of spawning depth for both simulations, it is necessary to 
 %\begin{landscape}
 \begin{table}[H]
 \centering
+\caption{ANOVA of recruitment rates for $Sim 9$ (Case 1).}
+\rowcolors{1}{white}{gris}
 \begin{adjustbox}{width=0.9\textwidth}
 \small
 \begin{tabular}{c|r|r|r|r|r|r}
-\hline
+\toprule
                                   &
 	\textbf{Df}                   &
 	\textbf{Sum Sq}               &
@@ -833,7 +846,7 @@ Given the importance of spawning depth for both simulations, it is necessary to 
 	\textbf{F-value}    		   &
 	\textbf{Pr (\textgreater{F})} &
 	$\mathbf{\% Exp}$      \\
-\hline
+\midrule
 Year                  & 20	 & 845551.35  & 42277.57   & 258.49	   & 0	         & 4.07\\
 Month                 & 11	 & 81363.69	  & 7396.70    & 45.22	   & 3.51E-99	 &0.39  \\
 Depth                 & 2	 & 4830381.85 & 2415190.93 & 14766.83 & 0 			 & 23.25 \\
@@ -850,21 +863,22 @@ Depth x Bathymetry    & 4	 & 64586.37	  & 16146.59   &98.72	   & 7.45E-84	 & 0.3
 Depth x Latitude      & 16	 & 358956.59  & 22434.79  & 137.17	   & 0	         &1.73 \\
 Bathymetry x Latitude & 12	 & 794674.55  & 66222.88  & 404.90	   & 0	         & 3.83  \\
 Residuals             & 51490	& 8421456.73 &163.56  & & 						 & 40.54\\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{ANOVA of recruitment rates for $Sim 9$ (Case 1).}
-\label{ANOVAsim9}
+\label{Chap3ANOVAsim9}
 \end{table}
 %\end{landscape}
 
 %\begin{landscape}
 \begin{table}[H]
 \centering
+\caption{ANOVA of recruitment rates for $Sim 10$ (Case 2).}
+\rowcolors{1}{white}{gris}
 \begin{adjustbox}{width=0.9\textwidth}
 \small
 \begin{tabular}{c|r|r|r|r|r|r}
-\hline
+\toprule
                                   &
 	\textbf{Df}                   &
 	\textbf{Sum Sq}               &
@@ -872,7 +886,7 @@ Residuals             & 51490	& 8421456.73 &163.56  & & 						 & 40.54\\
 	\textbf{F-value}    		   &
 	\textbf{Pr (\textgreater{F})} &
 	$\mathbf{\% Exp}$      \\
-\hline
+\midrule
 Year                  & 20    & 1391210.69  & 69560.53   & 265.92   & 0                   & 3.78  \\
 Month                 & 11    & 1306548.20  & 118777.11  & 454.06   & 0                   & 3.55  \\
 Depth                 & 2     & 6854738.93  & 3427369.47 & 13102.18 & 0                   & 18.64 \\
@@ -889,11 +903,10 @@ Depth x Bathymetry    & 4     & 95138.41    & 23784.60   & 90.92    & 3.64E-77  
 Depth x Latitude      & 16    & 1033328.18  & 64583.01   & 246.89   & 0                   & 2.81  \\
 Bathymetry x Latitude & 12    & 1610910.69  & 134242.56  & 513.18   & 0                   & 4.38  \\
 Residuals             & 51487 & 13468365.16 & 261.59     &          &                     & 36.62 \\
-\hline
+\bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{ANOVA of recruitment rates for $Sim 10$ (Case 2).}
-\label{ANOVAsim10}
+\label{Chap3ANOVAsim10}
 \end{table}
 %\end{landscape}
 
@@ -909,7 +922,7 @@ Residuals             & 51487 & 13468365.16 & 261.59     &          &           
 
 We studied larval retention and growth of the Peruvian anchovy (\textit{\gls{ringens}}) in the \acrshort{nhcs} using a biophysical model. This model was first forced by currents from a more modern configuration of a hydrodynamic model used previously at the same horizontal resolution (10 km; \cite{BrocLett2008}). We were able to replicate the general modeled patterns of larval retention obtained previously. Indeed, our results were consistent with another study aiming at answering the same scientific question but using a different dataset, thus proving the replicability of these results \citep{NAP25303}. This emphasis the robustness of the results despite the stochastic variability inherent to hydrodynamic model configurations. It was also crucial to replicate previous results before assessing the effects of new forcing products and other model components in order to avoid generating false conclusions \citep{Bake2016}. Here, in particular, we found the same opposite seasonal pattern relative to spawning depth (Fig. \ref{Chap3BrocVSFloreBarplots}) as \cite{BrocLett2008}. However, we obtained slightly higher coastal retention values during summer months for the three spawning depths considered. This result could be due to a greater stratification of the water column and to a higher spatial resolution of the wind stress forcing (weaker at the coast) in the new hydrodynamic simulations compared to the old one. Retention within the most coastal spawning zone (bathymetry 0 -100 $m$) was up to 20 \% higher in summer than in \cite{BrocLett2008}.\\
 
-After including larval growth into our model based on the DEB theory, we explored simulations using a size criterion for retention (Fig. \ref{Chap3Case1CriterionCompar} and Fig. \ref{Chap3Case2CriterionCompar}), as opposed to an age criterion as before. Using a size criterion for retention means considering the impact of environmental variability on the planktonic life duration (PLD), which is crucial in biophysical modelling studies \citep{LettAyat2010}. Indeed, a shorter PLD, resulting from faster growth, is expected to increase local retention and therefore recruitment. Larvae that grow quicker may also escape predators, swim more efficiently and have therefore a better chance to survive \citep{Houd2008}, which was also explored in our results including mortality. In our simulations, larvae experienced temperatures ranging from $\sim$17\textdegree C in winter to $\sim$23\textdegree C in summer. The effect of temperature on growth depended on the hypothesis we made on the $C_T$ function (Eqn. \ref{C_T}) as we considered two temperature correction curves. Under the hypothesis of a max $C_T$ at $\sim$23.4\textdegree C (Case 1), the PLD could be as low as 20 days and the largest recruitment was found in summer in the Guayaquil Bay. However, this bay lies at the northern limit of \textit{\gls{ringens}} distribution \citep{CaldAyor2020}, and large recruitment of Peruvian anchovy has not been observed there to our knowledge. Tuning model parameters in order to fit a known distribution is a way to study the ecological niche limits. For our model prediction to fit the spatial extent of the observed spawning area (thus excluding the Guayaquil Bay, Fig. \ref{Chap3DistPartiMapEgg}e), we had to change the $C_T$ function such that its maximum value occurs at $\sim$19\textdegree C. In this case the average \acrshort{pld} of simulated recruited larvae was $\sim$50 days, which is in the order of in situ and laboratory observations \citep{PaloMuck1987}. Furthermore, \citep{CastPena2022} showed that the main habitat temperature range of adult anchovy population was 16-24\textdegree C, which is consistent with an optimal larval growth temperature around the middle of this range. However, the hypothesis that temperature would be the main factor limiting larval growth for individuals in the Guayaquil Bay should be challenged by new laboratory experiments designed to identify the upper temperature limit for larval growth. Indeed, current experiments found the fastest growth at 19\textdegree C for larval stages but did not investigate higher temperature values \citep{RiouOfel2021}. Some preliminary results tend to indicate for juvenile stages reduction of ingestion rate from 21\textdegree C (unpublished data), which would impact the growth rate. So, more laboratory experiments should be designed specifically to identify the shape of the $C_T$ function for \textit{\gls{ringens}}. Our results obtained with a 19\textdegree C maximum $C_T$ (Case 1) are also in line with \cite{XuChai2013} who found a rather adverse effect of inter-annual variability, specifically during the El Niño period, where the number of days to reach recruitment increased and survival decreased considerably.\\
+After including larval growth into our model based on the DEB theory, we explored simulations using a size criterion for retention (Fig. \ref{Chap3Case1CriterionCompar} and Fig. \ref{Chap3Case2CriterionCompar}), as opposed to an age criterion as before. Using a size criterion for retention means considering the impact of environmental variability on the planktonic life duration (\acrshort{pld}), which is crucial in biophysical modelling studies \citep{LettAyat2010}. Indeed, a shorter \acrshort{pld}, resulting from faster growth, is expected to increase local retention and therefore recruitment. Larvae that grow quicker may also escape predators, swim more efficiently and have therefore a better chance to survive \citep{Houd2008}, which was also explored in our results including mortality. In our simulations, larvae experienced temperatures ranging from $\sim$17\textdegree C in winter to $\sim$23\textdegree C in summer. The effect of temperature on growth depended on the hypothesis we made on the $C_T$ function (Eqn. \ref{C_T}) as we considered two temperature correction curves. Under the hypothesis of a max $C_T$ at $\sim$23.4\textdegree C (Case 1), the \acrshort{pld} could be as low as 20 days and the largest recruitment was found in summer in the Guayaquil Bay. However, this bay lies at the northern limit of \textit{\gls{ringens}} distribution \citep{CaldAyor2020}, and large recruitment of Peruvian anchovy has not been observed there to our knowledge. Tuning model parameters in order to fit a known distribution is a way to study the ecological niche limits. For our model prediction to fit the spatial extent of the observed spawning area (thus excluding the Guayaquil Bay, Fig. \ref{Chap3DistPartiMapEgg}e), we had to change the $C_T$ function such that its maximum value occurs at $\sim$19\textdegree C. In this case the average \acrshort{pld} of simulated recruited larvae was $\sim$50 days, which is in the order of in situ and laboratory observations \citep{PaloMuck1987}. Furthermore, \citep{CastPena2022} showed that the main habitat temperature range of adult anchovy population was 16-24\textdegree C, which is consistent with an optimal larval growth temperature around the middle of this range. However, the hypothesis that temperature would be the main factor limiting larval growth for individuals in the Guayaquil Bay should be challenged by new laboratory experiments designed to identify the upper temperature limit for larval growth. Indeed, current experiments found the fastest growth at 19\textdegree C for larval stages but did not investigate higher temperature values \citep{RiouOfel2021}. Some preliminary results tend to indicate for juvenile stages reduction of ingestion rate from 21\textdegree C (unpublished data), which would impact the growth rate. So, more laboratory experiments should be designed specifically to identify the shape of the $C_T$ function for \textit{\gls{ringens}}. Our results obtained with a 19\textdegree C maximum $C_T$ (Case 1) are also in line with \cite{XuChai2013} who found a rather adverse effect of inter-annual variability, specifically during the El Niño period, where the number of days to reach recruitment increased and survival decreased considerably.\\
 
 In simulations where food was considered as not limiting larval growth, we found similar results as in simulations where both food and temperature were limiting. This result contrasts with \cite{ThomDuma2016} who used a similar bio-energetic approach as ours to study oyster larvae growth and recruitment in Polynesia. In a context where temperature variability was much smaller ($\sim$28-29\textdegree C) they found that food limitation explained most of recruitment variability. In our case, larval food limitation did not impact the seasonal pattern but it had a small impact on the spatial pattern, suggesting an average higher food limitation south of the Pisco upwelling cell ($\sim$14 – 15 \textdegree S), which is in line with a lower upwelling productivity \citep{EspiEche2017}.\\
 
